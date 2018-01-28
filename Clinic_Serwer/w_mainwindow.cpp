@@ -12,4 +12,3 @@ w_MainWindow::~w_MainWindow()
 {
     delete ui;
 }
-gdfgdfgdf
