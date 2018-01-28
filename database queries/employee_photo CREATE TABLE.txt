@@ -1,0 +1,13 @@
+CREATE TABLE public.employee_photo
+(
+    employee_id 	INT NOT NULL,
+    photo_format 	varchar(10) NOT NULL,
+    photo			BYTEA NOT NULL,
+    PRIMARY KEY (employee_id, photo_format)
+);
+
+ALTER TABLE public.employee_photo
+ADD CONSTRAINT fk_emp_id
+FOREIGN KEY (employee_id)
+REFERENCES public.employee(id)
+ON DELETE RESTRICT;
