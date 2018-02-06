@@ -34,3 +34,6 @@ HEADERS += \
 
 FORMS += \
         w_mainwindow.ui
+
+DISTFILES += \
+    config.ini
