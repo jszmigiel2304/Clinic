@@ -1,5 +1,0 @@
-<RCC>
-    <qresource prefix="/actions">
-        <file>icons/start-active.png</file>
-    </qresource>
-</RCC>
