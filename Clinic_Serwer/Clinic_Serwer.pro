@@ -37,3 +37,6 @@ FORMS += \
 
 DISTFILES += \
     config.ini
+
+RESOURCES += \
+    icons.qrc
