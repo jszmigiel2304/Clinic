@@ -4,7 +4,7 @@
 #
 #-------------------------------------------------
 
-QT       += core gui network
+QT       += core gui network sql
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -26,16 +26,31 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += \
         main.cpp \
         w_mainwindow.cpp \
-    c_clinictcpserver.cpp
+    c_clinictcpserver.cpp \
+    w_serverconfigurationdialog.cpp \
+    i_observer.cpp \
+    i_watched.cpp \
+    c_settingscontroller.cpp \
+    w_initializedialog.cpp
 
 HEADERS += \
         w_mainwindow.h \
-    c_clinictcpserver.h
+    c_clinictcpserver.h \
+    w_serverconfigurationdialog.h \
+    i_observer.h \
+    i_watched.h \
+    c_settingscontroller.h \
+    m_fileMacros.h \
+    w_initializedialog.h
 
 FORMS += \
-        w_mainwindow.ui
+        w_mainwindow.ui \
+    w_serverconfigurationdialog.ui \
+    w_initializedialog.ui
 
 DISTFILES += \
+    config.ini \
+    styles.css \
     config.ini
 
 RESOURCES += \

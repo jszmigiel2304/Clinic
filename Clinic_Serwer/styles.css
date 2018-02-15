@@ -1,0 +1,18 @@
+QMainWindow#w_MainWindow {
+    background-color: #FFFFFF;
+}
+
+
+QToolBar#mainToolBar {
+    background-color: #fafafb;
+}
+
+
+QGroupBox#listeningOptionGroupBox {
+    background-color: #fafafb;
+}
+
+QDialog#w_serverConfigurationDialog {
+    background-color: #fafafb;
+}
+

@@ -1,3 +1,16 @@
 <RCC>
-    <qresource prefix="/actions"/>
+    <qresource prefix="/actions">
+        <file>icons/configure.png</file>
+        <file>icons/start.png</file>
+        <file>icons/stop.png</file>
+        <file>icons/if_032_95930.png</file>
+        <file>icons/if_accept-database_49574.png</file>
+        <file>icons/if_database_refresh_35959.png</file>
+        <file>icons/if_remove-from-database_49610.png</file>
+        <file>icons/if_server_information_103339.png</file>
+        <file>icons/if_server_run_103341.png</file>
+        <file>icons/if_server_settings_103343.png</file>
+        <file>icons/if_server_stop_103344.png</file>
+        <file>icons/if_browser_window_settings_103427.png</file>
+    </qresource>
 </RCC>

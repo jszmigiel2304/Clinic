@@ -1,5 +1,6 @@
 #include "w_mainwindow.h"
 #include "ui_w_mainwindow.h"
+#include "w_serverconfigurationdialog.h"
 
 w_MainWindow::w_MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -11,4 +12,16 @@ w_MainWindow::w_MainWindow(QWidget *parent) :
 w_MainWindow::~w_MainWindow()
 {
     delete ui;
+}
+
+void w_MainWindow::update(QMap<QString, QVariant> data)
+{
+
+}
+
+void w_MainWindow::on_actionServerConfigure_triggered()
+{
+    w_serverConfigurationDialog * wnd = new w_serverConfigurationDialog(this);
+    wnd->AddWatchedObject("server", *(this->watchedObjectsList["server"]));
+    wnd->show();
 }
