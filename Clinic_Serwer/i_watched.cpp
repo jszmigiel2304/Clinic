@@ -5,6 +5,6 @@ i_Watched::i_Watched()
 
 }
 
-QMap<QString, QVariant> i_Watched::ShareProperties()
+QMap<QString, QVariant> i_Watched::ShareProperties() const
 {
 }

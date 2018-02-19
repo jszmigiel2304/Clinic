@@ -9,11 +9,14 @@ class c_ClinicTcpServer : public QTcpServer, public i_Watched
 {
 public:
     c_ClinicTcpServer();
+    c_ClinicTcpServer(QMap<QString, QVariant> settings);
+    ~c_ClinicTcpServer();
+    QMap<QString, QVariant> ShareProperties() const;
 
-    int port = 6543;
-    QString name = "loopback_0";
+private:
+    int port;
+    QString iterfaceName;
 
-    QMap<QString, QVariant> ShareProperties();
 };
 
 #endif // C_CLINICTCPSERVER_H

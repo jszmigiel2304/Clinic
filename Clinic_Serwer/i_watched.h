@@ -9,7 +9,7 @@ class i_Watched
 public:
     i_Watched();
 
-    virtual QMap<QString, QVariant> ShareProperties();
+    virtual QMap<QString, QVariant> ShareProperties() const;
 };
 
 #endif // I_WATCHED_H

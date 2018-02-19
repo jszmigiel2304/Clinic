@@ -5,9 +5,9 @@ i_Observer::i_Observer()
 
 }
 
-void i_Observer::AddWatchedObject(QString name, i_Watched &object)
+void i_Observer::AddWatchedObject(QString name, i_Watched *object)
 {
-    this->watchedObjectsList.insert(name, &object);
+    this->watchedObjectsList.insert(name, object);
 }
 
 void i_Observer::DeleteWatchedObject(QString name)

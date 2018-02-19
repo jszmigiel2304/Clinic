@@ -41,7 +41,8 @@ HEADERS += \
     i_watched.h \
     c_settingscontroller.h \
     m_fileMacros.h \
-    w_initializedialog.h
+    w_initializedialog.h \
+    m_defaultinifile.h
 
 FORMS += \
         w_mainwindow.ui \
@@ -49,9 +50,10 @@ FORMS += \
     w_initializedialog.ui
 
 DISTFILES += \
+    config2.ini \
     config.ini \
-    styles.css \
-    config.ini
+    styles.css
 
 RESOURCES += \
-    icons.qrc
+    icons.qrc \
+    gifs.qrc

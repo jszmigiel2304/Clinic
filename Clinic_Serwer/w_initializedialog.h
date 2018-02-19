@@ -15,8 +15,9 @@ class w_initializeDialog : public QDialog
     Q_OBJECT
 
 public:
-    explicit w_initializeDialog(QApplication * app, c_SettingsController * settContr, QWidget *parent = 0);
+    explicit w_initializeDialog(QApplication * app, c_SettingsController * settContr , QWidget *parent = 0);
     ~w_initializeDialog();
+    int checkFiles();
 
 
     QApplication * app;
@@ -27,6 +28,7 @@ private slots:
 
 private:
     Ui::w_initializeDialog *ui;
+
 };
 
 #endif // W_INITIALIZEDIALOG_H

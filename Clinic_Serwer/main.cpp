@@ -11,31 +11,31 @@
 
 int main(int argc, char *argv[])
 {
-    QApplication a(argc, argv);
+    QApplication a(argc, argv);    
+    c_SettingsController settContr(INI_FILE);
 
-    c_SettingsController settController(INI_FILE);
-    settController.LoadSettings();
-
-
-
-    w_initializeDialog * init = new w_initializeDialog(&a, &settController);
+    w_initializeDialog * init = new w_initializeDialog(&a, &settContr);
     init->show();
-    init->exec();
 
-    QFile cssFile(CSS_STYLES_FILE);
-    cssFile.open(QFile::ReadOnly);
-    QString cssStyles = QLatin1String(cssFile.readAll());
+    if(!init->checkFiles())
+    {
+        a.exit(0);
+    }
+    else
+    {
+        w_MainWindow * w = new w_MainWindow(settContr.getSettings("window"));
+        c_ClinicTcpServer * server = new c_ClinicTcpServer(settContr.getSettings("server"));
 
-    a.setStyleSheet(cssStyles);
-
-    // załadowanie pliku css - KONIEC
-
-    w_MainWindow w;
-    c_ClinicTcpServer server;
-
-    //w.AddWatchedObject("server", dynamic_cast<i_Watched *> (*server) );
-    w.show();
+        w->AddWatchedObject("server", dynamic_cast<i_Watched *> (server) );
+        w->show();
 
 
-    return a.exec();
+        return a.exec();
+
+        server->deleteLater();
+        w->deleteLater();
+    }
+
 }
+
+

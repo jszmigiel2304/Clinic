@@ -11,7 +11,7 @@ public:
     i_Observer();
     QMap<QString, i_Watched *> watchedObjectsList;
 
-    virtual void AddWatchedObject(QString name, i_Watched &object);
+    virtual void AddWatchedObject(QString name, i_Watched * object);
     virtual void DeleteWatchedObject(QString name);
     virtual QMap<QString , QVariant> GetWatchedObjectProperties(QString name);
 

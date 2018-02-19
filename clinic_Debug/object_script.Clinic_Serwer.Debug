@@ -1,0 +1,15 @@
+INPUT(
+./debug\main.o
+./debug\w_mainwindow.o
+./debug\c_clinictcpserver.o
+./debug\w_serverconfigurationdialog.o
+./debug\i_observer.o
+./debug\i_watched.o
+./debug\c_settingscontroller.o
+./debug\w_initializedialog.o
+./debug\qrc_icons.o
+./debug\qrc_gifs.o
+./debug\moc_w_mainwindow.o
+./debug\moc_w_serverconfigurationdialog.o
+./debug\moc_w_initializedialog.o
+);

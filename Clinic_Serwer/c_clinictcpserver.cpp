@@ -5,11 +5,22 @@ c_ClinicTcpServer::c_ClinicTcpServer()
 
 }
 
-QMap<QString, QVariant> c_ClinicTcpServer::ShareProperties()
+c_ClinicTcpServer::c_ClinicTcpServer(QMap<QString, QVariant> settings)
+{
+    this->iterfaceName = settings["interface"].toString();
+    this->port = settings["port"].toInt();
+}
+
+c_ClinicTcpServer::~c_ClinicTcpServer()
+{
+
+}
+
+QMap<QString, QVariant> c_ClinicTcpServer::ShareProperties() const
 {
     QMap<QString, QVariant> map;
     map.insert("port", this->port);
-    map.insert("name", this->name);
+    map.insert("interfaceName", this->iterfaceName);
 
 
     return map;

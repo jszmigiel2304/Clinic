@@ -1,0 +1,15 @@
+INPUT(
+./release\main.o
+./release\w_mainwindow.o
+./release\c_clinictcpserver.o
+./release\w_serverconfigurationdialog.o
+./release\i_observer.o
+./release\i_watched.o
+./release\c_settingscontroller.o
+./release\w_initializedialog.o
+./release\qrc_icons.o
+./release\qrc_gifs.o
+./release\moc_w_mainwindow.o
+./release\moc_w_serverconfigurationdialog.o
+./release\moc_w_initializedialog.o
+);

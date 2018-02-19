@@ -1,6 +1,9 @@
 #ifndef C_SETTINGSCONTROLLER_H
 #define C_SETTINGSCONTROLLER_H
 
+#include "m_fileMacros.h"
+#include "m_defaultinifile.h"
+
 #include <QString>
 #include <QFile>
 #include <QSettings>
@@ -11,6 +14,10 @@ class c_SettingsController
 public:
     c_SettingsController(QString settingsFilePath);
     void LoadSettings();
+    void CreateIniFile();
+    QString getSettingsFilePath() const;
+    QMap<QString, QMap<QString, QVariant>> getSettings() const;
+    QMap<QString, QVariant> getSettings(QString groupName) const;
 
 private:
     QString settingsFilePath;

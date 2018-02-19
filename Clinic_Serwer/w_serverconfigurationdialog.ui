@@ -38,10 +38,10 @@
     <enum>Qt::Horizontal</enum>
    </property>
    <property name="standardButtons">
-    <set>QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>
+    <set>QDialogButtonBox::NoButton</set>
    </property>
   </widget>
-  <widget class="QLineEdit" name="lineEdit">
+  <widget class="QLineEdit" name="portLineEdit">
    <property name="geometry">
     <rect>
      <x>65</x>
@@ -49,6 +49,9 @@
      <width>60</width>
      <height>20</height>
     </rect>
+   </property>
+   <property name="maxLength">
+    <number>5</number>
    </property>
   </widget>
   <widget class="QLabel" name="label">
@@ -76,7 +79,7 @@
    <property name="title">
     <string>Nasłuchiwanie</string>
    </property>
-   <widget class="QRadioButton" name="radioButton">
+   <widget class="QRadioButton" name="allRadioButton">
     <property name="geometry">
      <rect>
       <x>10</x>
@@ -89,7 +92,7 @@
      <string>Nasłuchuj na wszystkich dostępnych adresach</string>
     </property>
    </widget>
-   <widget class="QRadioButton" name="radioButton_2">
+   <widget class="QRadioButton" name="interfaceRadioButton">
     <property name="geometry">
      <rect>
       <x>10</x>
