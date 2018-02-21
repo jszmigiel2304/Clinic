@@ -7,9 +7,14 @@ INPUT(
 ./debug\i_watched.o
 ./debug\c_settingscontroller.o
 ./debug\w_initializedialog.o
+./debug\w_interfaceinformationswidget.o
+./debug\w_serverinformationswidget.o
 ./debug\qrc_icons.o
 ./debug\qrc_gifs.o
 ./debug\moc_w_mainwindow.o
+./debug\moc_c_clinictcpserver.o
 ./debug\moc_w_serverconfigurationdialog.o
 ./debug\moc_w_initializedialog.o
+./debug\moc_w_interfaceinformationswidget.o
+./debug\moc_w_serverinformationswidget.o
 );

@@ -89,7 +89,7 @@
      </rect>
     </property>
     <property name="text">
-     <string>Nasłuchuj na wszystkich dostępnych adresach</string>
+     <string>Nasłuchuj na wszystkich dostępnych interfejsach</string>
     </property>
    </widget>
    <widget class="QRadioButton" name="interfaceRadioButton">
@@ -102,7 +102,7 @@
      </rect>
     </property>
     <property name="text">
-     <string>Jeden adres</string>
+     <string>Jeden interfejs</string>
     </property>
    </widget>
    <widget class="QGroupBox" name="interfaceListGroupBox">

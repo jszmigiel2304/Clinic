@@ -31,7 +31,9 @@ SOURCES += \
     i_observer.cpp \
     i_watched.cpp \
     c_settingscontroller.cpp \
-    w_initializedialog.cpp
+    w_initializedialog.cpp \
+    w_interfaceinformationswidget.cpp \
+    w_serverinformationswidget.cpp
 
 HEADERS += \
         w_mainwindow.h \
@@ -42,17 +44,22 @@ HEADERS += \
     c_settingscontroller.h \
     m_fileMacros.h \
     w_initializedialog.h \
-    m_defaultinifile.h
+    m_defaultinifile.h \
+    w_interfaceinformationswidget.h \
+    w_serverinformationswidget.h
 
 FORMS += \
         w_mainwindow.ui \
     w_serverconfigurationdialog.ui \
-    w_initializedialog.ui
+    w_initializedialog.ui \
+    w_interfaceinformationswidget.ui \
+    w_serverinformationswidget.ui
 
 DISTFILES += \
     config2.ini \
-    config.ini \
-    styles.css
+    styles.css \
+    config3.ini \
+    config.ini
 
 RESOURCES += \
     icons.qrc \

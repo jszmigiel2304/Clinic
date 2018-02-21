@@ -20,6 +20,8 @@
 #include <QtWidgets/QStatusBar>
 #include <QtWidgets/QToolBar>
 #include <QtWidgets/QWidget>
+#include "w_interfaceinformationswidget.h"
+#include "w_serverinformationswidget.h"
 
 QT_BEGIN_NAMESPACE
 
@@ -33,6 +35,8 @@ public:
     QAction *actionWindowConfigure;
     QAction *actionDataBaseConfigure;
     QWidget *centralWidget;
+    w_InterfaceInformationsWidget *interfaceInfoArea;
+    w_ServerInformationsWidget *serverInfoArea;
     QToolBar *mainToolBar;
     QMenuBar *menuBar;
     QMenu *menuSerwer;
@@ -75,6 +79,12 @@ public:
         actionDataBaseConfigure->setIcon(icon4);
         centralWidget = new QWidget(w_MainWindow);
         centralWidget->setObjectName(QStringLiteral("centralWidget"));
+        interfaceInfoArea = new w_InterfaceInformationsWidget(centralWidget);
+        interfaceInfoArea->setObjectName(QStringLiteral("interfaceInfoArea"));
+        interfaceInfoArea->setGeometry(QRect(10, 150, 781, 231));
+        serverInfoArea = new w_ServerInformationsWidget(centralWidget);
+        serverInfoArea->setObjectName(QStringLiteral("serverInfoArea"));
+        serverInfoArea->setGeometry(QRect(10, 10, 781, 130));
         w_MainWindow->setCentralWidget(centralWidget);
         mainToolBar = new QToolBar(w_MainWindow);
         mainToolBar->setObjectName(QStringLiteral("mainToolBar"));

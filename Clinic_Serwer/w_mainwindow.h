@@ -1,11 +1,12 @@
 #ifndef W_MAINWINDOW_H
 #define W_MAINWINDOW_H
 
-#include <QMainWindow>
-
 #include "i_watched.h"
 #include "i_observer.h"
+#include "w_serverconfigurationdialog.h"
+#include "c_clinictcpserver.h"
 
+#include <QMainWindow>
 
 namespace Ui {
 class w_MainWindow;
@@ -20,10 +21,15 @@ public:
     explicit w_MainWindow(QMap<QString, QVariant> settings, QWidget *parent = 0);
     ~w_MainWindow();
 
-    void update(QMap<QString, QVariant> data);
+    void refresh();
+    void shareServerPointer();
 
 private slots:
     void on_actionServerConfigure_triggered();
+
+    void on_actionServerStart_triggered();
+
+    void on_actionServerStop_triggered();
 
 private:
     Ui::w_MainWindow *ui;

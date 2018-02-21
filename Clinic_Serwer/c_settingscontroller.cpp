@@ -1,5 +1,10 @@
 #include "c_settingscontroller.h"
 
+c_SettingsController::c_SettingsController()
+{
+
+}
+
 c_SettingsController::c_SettingsController(QString settingsFilePath)
 {
     this->settingsFilePath = settingsFilePath;
@@ -37,7 +42,7 @@ void c_SettingsController::CreateIniFile()
     settings.endGroup();
 
     settings.beginGroup("server");
-    settings.setValue("interface", SERVER_INTERFACE);
+    settings.setValue("interfaceName", SERVER_INTERFACE);
     settings.setValue("port", SERVER_PORT);
     settings.endGroup();
 
@@ -73,5 +78,28 @@ QMap<QString, QMap<QString, QVariant>> c_SettingsController::getSettings() const
 QMap<QString, QVariant> c_SettingsController::getSettings(QString groupName) const
 {
     return this->settings[groupName];
+}
+
+void c_SettingsController::SaveToFile(QString groupName, QMap<QString, QVariant> map)
+{
+    QSettings settings(INI_FILE, QSettings::IniFormat);
+
+    settings.beginGroup(groupName);
+    foreach (QString item, map.keys()) {
+        settings.setValue(item, map[item]);
+    }
+    settings.endGroup();
+}
+
+void c_SettingsController::SaveToFile(QString groupName, QMap<QString, QVariant> map, QString filePath)
+{
+    QSettings settings(filePath, QSettings::IniFormat);
+
+    settings.beginGroup(groupName);
+    foreach (QString item, map.keys()) {
+        settings.setValue(item, map[item]);
+    }
+    settings.endGroup();
+
 }
 

@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>w_ServerInformationsWidget</class>
+ <widget class="QWidget" name="w_ServerInformationsWidget">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>781</width>
+    <height>130</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <widget class="QGroupBox" name="groupBox">
+   <property name="geometry">
+    <rect>
+     <x>5</x>
+     <y>5</y>
+     <width>771</width>
+     <height>121</height>
+    </rect>
+   </property>
+   <property name="title">
+    <string>Server</string>
+   </property>
+   <widget class="QLabel" name="l_serverStatus">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>15</y>
+      <width>80</width>
+      <height>30</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Status</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="l_address">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>45</y>
+      <width>80</width>
+      <height>30</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Adres</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="l_port">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>75</y>
+      <width>80</width>
+      <height>30</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Port</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="f_serverStatus">
+    <property name="geometry">
+     <rect>
+      <x>90</x>
+      <y>15</y>
+      <width>400</width>
+      <height>30</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QLabel" name="f_address">
+    <property name="geometry">
+     <rect>
+      <x>90</x>
+      <y>45</y>
+      <width>400</width>
+      <height>30</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QLabel" name="f_port">
+    <property name="geometry">
+     <rect>
+      <x>90</x>
+      <y>75</y>
+      <width>400</width>
+      <height>30</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

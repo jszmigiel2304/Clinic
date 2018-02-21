@@ -27,6 +27,8 @@ int main(int argc, char *argv[])
         c_ClinicTcpServer * server = new c_ClinicTcpServer(settContr.getSettings("server"));
 
         w->AddWatchedObject("server", dynamic_cast<i_Watched *> (server) );
+        w->shareServerPointer();
+        w->refresh();
         w->show();
 
 

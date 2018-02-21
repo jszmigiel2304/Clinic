@@ -1,9 +1,16 @@
 #ifndef W_SERVERCONFIGURATIONDIALOG_H
 #define W_SERVERCONFIGURATIONDIALOG_H
 
+#include "i_observer.h"
+#include "c_settingscontroller.h"
+#include "m_fileMacros.h"
+
 #include <QDialog>
 #include <QRadioButton>
-#include "i_observer.h"
+#include <QNetworkInterface>
+#include <QRadioButton>
+#include <QPushButton>
+#include <QMessageBox>
 
 namespace Ui {
 class w_serverConfigurationDialog;
@@ -24,10 +31,16 @@ public:
 private:
     Ui::w_serverConfigurationDialog *ui;
     QList<QRadioButton *> interfacesRadioButtonList;
+    bool isChanged;
 
 private slots:
     void listeningOptionGroupBoxClicked(bool);
     void settingsChanged(bool);
+    void settingsChanged(QString);
+    void okButtonPressed();
+    void resetButtonPressed();
+    void applyButtonPressed();
+    void closeEvent(QCloseEvent * e);
 };
 
 #endif // W_SERVERCONFIGURATIONDIALOG_H

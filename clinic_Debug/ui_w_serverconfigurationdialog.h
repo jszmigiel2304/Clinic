@@ -78,8 +78,8 @@ public:
         w_serverConfigurationDialog->setWindowTitle(QApplication::translate("w_serverConfigurationDialog", "Ustawienia - Serwer", nullptr));
         label->setText(QApplication::translate("w_serverConfigurationDialog", "Port", nullptr));
         listeningOptionGroupBox->setTitle(QApplication::translate("w_serverConfigurationDialog", "Nas\305\202uchiwanie", nullptr));
-        allRadioButton->setText(QApplication::translate("w_serverConfigurationDialog", "Nas\305\202uchuj na wszystkich dost\304\231pnych adresach", nullptr));
-        interfaceRadioButton->setText(QApplication::translate("w_serverConfigurationDialog", "Jeden adres", nullptr));
+        allRadioButton->setText(QApplication::translate("w_serverConfigurationDialog", "Nas\305\202uchuj na wszystkich dost\304\231pnych interfejsach", nullptr));
+        interfaceRadioButton->setText(QApplication::translate("w_serverConfigurationDialog", "Jeden interfejs", nullptr));
         interfaceListGroupBox->setTitle(QApplication::translate("w_serverConfigurationDialog", "Lista dost\304\231pnych interfejs\303\263w sieciowych", nullptr));
     } // retranslateUi
 

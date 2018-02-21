@@ -10,6 +10,7 @@ public:
     i_Watched();
 
     virtual QMap<QString, QVariant> ShareProperties() const;
+    virtual void UpdateProperties(QMap<QString, QVariant> map);
 };
 
 #endif // I_WATCHED_H

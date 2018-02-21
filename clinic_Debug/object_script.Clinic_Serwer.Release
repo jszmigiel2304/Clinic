@@ -7,9 +7,14 @@ INPUT(
 ./release\i_watched.o
 ./release\c_settingscontroller.o
 ./release\w_initializedialog.o
+./release\w_interfaceinformationswidget.o
+./release\w_serverinformationswidget.o
 ./release\qrc_icons.o
 ./release\qrc_gifs.o
 ./release\moc_w_mainwindow.o
+./release\moc_c_clinictcpserver.o
 ./release\moc_w_serverconfigurationdialog.o
 ./release\moc_w_initializedialog.o
+./release\moc_w_interfaceinformationswidget.o
+./release\moc_w_serverinformationswidget.o
 );

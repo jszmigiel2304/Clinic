@@ -12,12 +12,15 @@
 class c_SettingsController
 {
 public:
+    c_SettingsController();
     c_SettingsController(QString settingsFilePath);
     void LoadSettings();
     void CreateIniFile();
     QString getSettingsFilePath() const;
     QMap<QString, QMap<QString, QVariant>> getSettings() const;
     QMap<QString, QVariant> getSettings(QString groupName) const;
+    void SaveToFile(QString groupName, QMap<QString, QVariant> map);
+    void SaveToFile(QString groupName, QMap<QString, QVariant> map, QString filePath);
 
 private:
     QString settingsFilePath;
