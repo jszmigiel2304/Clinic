@@ -9,6 +9,9 @@ INPUT(
 ./debug\w_initializedialog.o
 ./debug\w_interfaceinformationswidget.o
 ./debug\w_serverinformationswidget.o
+./debug\w_databaseinformationswidget.o
+./debug\c_mysqldatabasecontroller.o
+./debug\w_windowconfigurationdialog.o
 ./debug\qrc_icons.o
 ./debug\qrc_gifs.o
 ./debug\moc_w_mainwindow.o
@@ -17,4 +20,7 @@ INPUT(
 ./debug\moc_w_initializedialog.o
 ./debug\moc_w_interfaceinformationswidget.o
 ./debug\moc_w_serverinformationswidget.o
+./debug\moc_w_databaseinformationswidget.o
+./debug\moc_c_mysqldatabasecontroller.o
+./debug\moc_w_windowconfigurationdialog.o
 );

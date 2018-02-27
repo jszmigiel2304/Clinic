@@ -53,6 +53,7 @@ public:
         label = new QLabel(w_serverConfigurationDialog);
         label->setObjectName(QStringLiteral("label"));
         label->setGeometry(QRect(25, 15, 40, 20));
+        label->setStyleSheet(QStringLiteral("font: 75 8pt \"MS Shell Dlg 2\";"));
         listeningOptionGroupBox = new QGroupBox(w_serverConfigurationDialog);
         listeningOptionGroupBox->setObjectName(QStringLiteral("listeningOptionGroupBox"));
         listeningOptionGroupBox->setGeometry(QRect(15, 50, 370, 301));

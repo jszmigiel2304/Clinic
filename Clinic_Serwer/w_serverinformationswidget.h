@@ -5,6 +5,7 @@
 
 #include <QWidget>
 #include <QMap>
+#include <QTimer>
 
 namespace Ui {
 class w_ServerInformationsWidget;
@@ -17,12 +18,13 @@ class w_ServerInformationsWidget : public QWidget , public i_Observer
 public:
     explicit w_ServerInformationsWidget(QWidget *parent = 0);
     ~w_ServerInformationsWidget();
-    void refresh();
 
 public slots:
-    void refreshInformations(QMap<QString, QVariant> map);
+    //void refreshInformations();
+    void refresh();
 private:
     Ui::w_ServerInformationsWidget *ui;
+    QTimer * timer;
 };
 
 #endif // W_SERVERINFORMATIONSWIDGET_H

@@ -40,7 +40,7 @@ int w_initializeDialog::checkFiles()
 
         ui->describeLabel->setText("Tworzenie pliku: config.ini");
         this->settContr->CreateIniFile();
-
+        this->settContr->LoadSettings();
     }
     else
     {

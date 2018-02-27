@@ -6,6 +6,7 @@
 
 #include <QWidget>
 #include <QNetworkInterface>
+#include <QTimer>
 
 namespace Ui {
 class w_InterfaceInformationsWidget;
@@ -18,14 +19,15 @@ class w_InterfaceInformationsWidget : public QWidget , public i_Observer
 public:
     explicit w_InterfaceInformationsWidget(QWidget *parent = 0);
     ~w_InterfaceInformationsWidget();
-    void refresh();
 
 public slots:
-    void refreshInformations(QMap<QString, QVariant> map);
+    //void refreshInformations(QMap<QString, QVariant> map);
+    void refresh();
 
 
 private:
     Ui::w_InterfaceInformationsWidget *ui;
+    QTimer * timer;
 };
 
 #endif // W_INTERFACEINFORMATIONSWIDGET_H

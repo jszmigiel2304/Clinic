@@ -14,6 +14,7 @@
         <file>icons/if_browser_window_settings_103427.png</file>
         <file>icons/if_sign-error_299045.png</file>
         <file>icons/error80x80.png</file>
+        <file>icons/appIcon.png</file>
     </qresource>
     <qresource prefix="/gifs"/>
 </RCC>

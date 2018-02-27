@@ -13,13 +13,13 @@ public:
     c_ClinicTcpServer();
     c_ClinicTcpServer(QMap<QString, QVariant> settings);
     ~c_ClinicTcpServer();
-    QMap<QString, QVariant> ShareProperties() const;    
+    QMap<QString, QVariant> ShareProperties();
 
 public slots:
     void UpdateProperties(QMap<QString, QVariant> map);
 
 signals:
-    void PropertiesChanged(QMap<QString, QVariant> map);
+    void PropertiesChanged();
 
 private:
     int port;

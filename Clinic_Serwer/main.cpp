@@ -3,10 +3,12 @@
 #include "m_fileMacros.h"
 #include "c_settingscontroller.h"
 #include "w_initializedialog.h"
+#include "c_mysqldatabasecontroller.h"
 
 #include <QApplication>
 #include <QSettings>
 #include <QFile>
+#include <QSql>
 
 
 int main(int argc, char *argv[])
@@ -25,15 +27,21 @@ int main(int argc, char *argv[])
     {
         w_MainWindow * w = new w_MainWindow(settContr.getSettings("window"));
         c_ClinicTcpServer * server = new c_ClinicTcpServer(settContr.getSettings("server"));
+        c_MySqlDatabaseController * dbContr = new c_MySqlDatabaseController(settContr.getSettings("databaseAuthentication"), settContr.getSettings("databaseClinic"));
 
         w->AddWatchedObject("server", dynamic_cast<i_Watched *> (server) );
+        w->AddWatchedObject("databaseController", dynamic_cast<i_Watched *> (dbContr));
+
         w->shareServerPointer();
+        w->shareDbContrPointer();
+
         w->refresh();
-        w->show();
+        w->MyShow();
 
 
         return a.exec();
 
+        dbContr->deleteLater();
         server->deleteLater();
         w->deleteLater();
     }

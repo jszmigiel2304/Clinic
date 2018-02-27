@@ -34,12 +34,12 @@ static const qt_meta_stringdata_c_ClinicTcpServer_t qt_meta_stringdata_c_ClinicT
 QT_MOC_LITERAL(0, 0, 17), // "c_ClinicTcpServer"
 QT_MOC_LITERAL(1, 18, 17), // "PropertiesChanged"
 QT_MOC_LITERAL(2, 36, 0), // ""
-QT_MOC_LITERAL(3, 37, 3), // "map"
-QT_MOC_LITERAL(4, 41, 16) // "UpdateProperties"
+QT_MOC_LITERAL(3, 37, 16), // "UpdateProperties"
+QT_MOC_LITERAL(4, 54, 3) // "map"
 
     },
     "c_ClinicTcpServer\0PropertiesChanged\0"
-    "\0map\0UpdateProperties"
+    "\0UpdateProperties\0map"
 };
 #undef QT_MOC_LITERAL
 
@@ -57,16 +57,16 @@ static const uint qt_meta_data_c_ClinicTcpServer[] = {
        1,       // signalCount
 
  // signals: name, argc, parameters, tag, flags
-       1,    1,   24,    2, 0x06 /* Public */,
+       1,    0,   24,    2, 0x06 /* Public */,
 
  // slots: name, argc, parameters, tag, flags
-       4,    1,   27,    2, 0x0a /* Public */,
+       3,    1,   25,    2, 0x0a /* Public */,
 
  // signals: parameters
-    QMetaType::Void, QMetaType::QVariantMap,    3,
+    QMetaType::Void,
 
  // slots: parameters
-    QMetaType::Void, QMetaType::QVariantMap,    3,
+    QMetaType::Void, QMetaType::QVariantMap,    4,
 
        0        // eod
 };
@@ -77,14 +77,14 @@ void c_ClinicTcpServer::qt_static_metacall(QObject *_o, QMetaObject::Call _c, in
         c_ClinicTcpServer *_t = static_cast<c_ClinicTcpServer *>(_o);
         Q_UNUSED(_t)
         switch (_id) {
-        case 0: _t->PropertiesChanged((*reinterpret_cast< QMap<QString,QVariant>(*)>(_a[1]))); break;
+        case 0: _t->PropertiesChanged(); break;
         case 1: _t->UpdateProperties((*reinterpret_cast< QMap<QString,QVariant>(*)>(_a[1]))); break;
         default: ;
         }
     } else if (_c == QMetaObject::IndexOfMethod) {
         int *result = reinterpret_cast<int *>(_a[0]);
         {
-            typedef void (c_ClinicTcpServer::*_t)(QMap<QString,QVariant> );
+            typedef void (c_ClinicTcpServer::*_t)();
             if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&c_ClinicTcpServer::PropertiesChanged)) {
                 *result = 0;
                 return;
@@ -132,10 +132,9 @@ int c_ClinicTcpServer::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
 }
 
 // SIGNAL 0
-void c_ClinicTcpServer::PropertiesChanged(QMap<QString,QVariant> _t1)
+void c_ClinicTcpServer::PropertiesChanged()
 {
-    void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(&_t1)) };
-    QMetaObject::activate(this, &staticMetaObject, 0, _a);
+    QMetaObject::activate(this, &staticMetaObject, 0, nullptr);
 }
 QT_WARNING_POP
 QT_END_MOC_NAMESPACE

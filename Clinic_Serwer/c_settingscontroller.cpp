@@ -22,7 +22,9 @@ void c_SettingsController::LoadSettings()
             QMap <QString, QVariant> map;
 
             foreach (const QString &childKey, sett.childKeys())
+            {
                 map.insert(childKey, sett.value(childKey).toString());
+            }
 
             this->settings.insert(groupName, map);
 
@@ -54,7 +56,7 @@ void c_SettingsController::CreateIniFile()
     settings.setValue("password", DB_AUTH_PWD);
     settings.endGroup();
 
-    settings.beginGroup("databseClinic");
+    settings.beginGroup("databaseClinic");
     settings.setValue("address", DB_CLINIC_ADDRESS);
     settings.setValue("port", DB_CLINIC_PORT);
     settings.setValue("database_name", DB_CLINIC_NAME);

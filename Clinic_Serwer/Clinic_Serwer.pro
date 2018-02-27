@@ -33,7 +33,10 @@ SOURCES += \
     c_settingscontroller.cpp \
     w_initializedialog.cpp \
     w_interfaceinformationswidget.cpp \
-    w_serverinformationswidget.cpp
+    w_serverinformationswidget.cpp \
+    w_databaseinformationswidget.cpp \
+    c_mysqldatabasecontroller.cpp \
+    w_windowconfigurationdialog.cpp
 
 HEADERS += \
         w_mainwindow.h \
@@ -46,19 +49,23 @@ HEADERS += \
     w_initializedialog.h \
     m_defaultinifile.h \
     w_interfaceinformationswidget.h \
-    w_serverinformationswidget.h
+    w_serverinformationswidget.h \
+    w_databaseinformationswidget.h \
+    c_mysqldatabasecontroller.h \
+    w_windowconfigurationdialog.h
 
 FORMS += \
         w_mainwindow.ui \
     w_serverconfigurationdialog.ui \
     w_initializedialog.ui \
     w_interfaceinformationswidget.ui \
-    w_serverinformationswidget.ui
+    w_serverinformationswidget.ui \
+    w_databaseinformationswidget.ui \
+    w_windowconfigurationdialog.ui
 
 DISTFILES += \
-    config2.ini \
     styles.css \
-    config3.ini \
+    config2.ini \
     config.ini
 
 RESOURCES += \

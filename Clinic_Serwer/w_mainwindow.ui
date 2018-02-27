@@ -12,8 +12,8 @@
   </property>
   <property name="minimumSize">
    <size>
-    <width>0</width>
-    <height>0</height>
+    <width>800</width>
+    <height>600</height>
    </size>
   </property>
   <property name="maximumSize">
@@ -24,6 +24,10 @@
   </property>
   <property name="windowTitle">
    <string>Przychodnia - Serwer</string>
+  </property>
+  <property name="windowIcon">
+   <iconset resource="icons.qrc">
+    <normaloff>:/actions/icons/appIcon.png</normaloff>:/actions/icons/appIcon.png</iconset>
   </property>
   <widget class="QWidget" name="centralWidget">
    <widget class="w_InterfaceInformationsWidget" name="interfaceInfoArea" native="true">
@@ -46,6 +50,26 @@
      </rect>
     </property>
    </widget>
+   <widget class="w_DatabaseInformationsWidget" name="authDbInfoArea" native="true">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>390</y>
+      <width>380</width>
+      <height>150</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="w_DatabaseInformationsWidget" name="clinicDbInfoArea" native="true">
+    <property name="geometry">
+     <rect>
+      <x>411</x>
+      <y>390</y>
+      <width>380</width>
+      <height>150</height>
+     </rect>
+    </property>
+   </widget>
   </widget>
   <widget class="QToolBar" name="mainToolBar">
    <attribute name="toolBarArea">
@@ -59,6 +83,8 @@
    <addaction name="actionServerConfigure"/>
    <addaction name="separator"/>
    <addaction name="actionDataBaseConfigure"/>
+   <addaction name="separator"/>
+   <addaction name="actionWindowConfigure"/>
   </widget>
   <widget class="QMenuBar" name="menuBar">
    <property name="geometry">
@@ -89,7 +115,6 @@
    <addaction name="menuSerwer"/>
    <addaction name="menuUstawienia"/>
   </widget>
-  <widget class="QStatusBar" name="statusBar"/>
   <action name="actionServerStart">
    <property name="icon">
     <iconset resource="icons.qrc">
@@ -149,6 +174,11 @@
     <string>Ustawienia bazy danych</string>
    </property>
   </action>
+  <action name="actionOpen">
+   <property name="text">
+    <string>Otwórz</string>
+   </property>
+  </action>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <customwidgets>
@@ -162,6 +192,12 @@
    <class>w_ServerInformationsWidget</class>
    <extends>QWidget</extends>
    <header>w_serverinformationswidget.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>w_DatabaseInformationsWidget</class>
+   <extends>QWidget</extends>
+   <header>w_databaseinformationswidget.h</header>
    <container>1</container>
   </customwidget>
  </customwidgets>

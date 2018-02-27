@@ -21,8 +21,8 @@ QT_BEGIN_MOC_NAMESPACE
 QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_w_InterfaceInformationsWidget_t {
-    QByteArrayData data[4];
-    char stringdata0[55];
+    QByteArrayData data[3];
+    char stringdata0[39];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -32,13 +32,12 @@ struct qt_meta_stringdata_w_InterfaceInformationsWidget_t {
 static const qt_meta_stringdata_w_InterfaceInformationsWidget_t qt_meta_stringdata_w_InterfaceInformationsWidget = {
     {
 QT_MOC_LITERAL(0, 0, 29), // "w_InterfaceInformationsWidget"
-QT_MOC_LITERAL(1, 30, 19), // "refreshInformations"
-QT_MOC_LITERAL(2, 50, 0), // ""
-QT_MOC_LITERAL(3, 51, 3) // "map"
+QT_MOC_LITERAL(1, 30, 7), // "refresh"
+QT_MOC_LITERAL(2, 38, 0) // ""
 
     },
-    "w_InterfaceInformationsWidget\0"
-    "refreshInformations\0\0map"
+    "w_InterfaceInformationsWidget\0refresh\0"
+    ""
 };
 #undef QT_MOC_LITERAL
 
@@ -56,10 +55,10 @@ static const uint qt_meta_data_w_InterfaceInformationsWidget[] = {
        0,       // signalCount
 
  // slots: name, argc, parameters, tag, flags
-       1,    1,   19,    2, 0x0a /* Public */,
+       1,    0,   19,    2, 0x0a /* Public */,
 
  // slots: parameters
-    QMetaType::Void, QMetaType::QVariantMap,    3,
+    QMetaType::Void,
 
        0        // eod
 };
@@ -70,10 +69,11 @@ void w_InterfaceInformationsWidget::qt_static_metacall(QObject *_o, QMetaObject:
         w_InterfaceInformationsWidget *_t = static_cast<w_InterfaceInformationsWidget *>(_o);
         Q_UNUSED(_t)
         switch (_id) {
-        case 0: _t->refreshInformations((*reinterpret_cast< QMap<QString,QVariant>(*)>(_a[1]))); break;
+        case 0: _t->refresh(); break;
         default: ;
         }
     }
+    Q_UNUSED(_a);
 }
 
 const QMetaObject w_InterfaceInformationsWidget::staticMetaObject = {
