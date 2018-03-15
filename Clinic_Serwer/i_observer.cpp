@@ -24,3 +24,8 @@ QMap<QString, QVariant> i_Observer::GetWatchedObjectProperties(QString name)
 {
     return this->watchedObjectsList[name]->ShareProperties();
 }
+
+QString i_Observer::GetWatchedObjectMessage(QString name)
+{
+    return this->watchedObjectsList[name]->ShareMessege();
+}

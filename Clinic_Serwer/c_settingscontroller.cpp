@@ -49,6 +49,7 @@ void c_SettingsController::CreateIniFile()
     settings.endGroup();
 
     settings.beginGroup("databaseAuthentication");
+    settings.setValue("driver", DB_AUTH_DRIVER);
     settings.setValue("address", DB_AUTH_ADDRESS);
     settings.setValue("port", DB_AUTH_PORT);
     settings.setValue("database_name", DB_AUTH_NAME);
@@ -57,6 +58,7 @@ void c_SettingsController::CreateIniFile()
     settings.endGroup();
 
     settings.beginGroup("databaseClinic");
+    settings.setValue("driver", DB_CLINIC_DRIVER);
     settings.setValue("address", DB_CLINIC_ADDRESS);
     settings.setValue("port", DB_CLINIC_PORT);
     settings.setValue("database_name", DB_CLINIC_NAME);

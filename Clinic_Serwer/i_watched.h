@@ -10,6 +10,7 @@ public:
     i_Watched();
 
     virtual QMap<QString, QVariant> ShareProperties();
+    virtual QString ShareMessege();
     virtual void UpdateProperties(QMap<QString, QVariant> map);
 };
 

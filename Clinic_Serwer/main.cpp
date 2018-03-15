@@ -9,6 +9,7 @@
 #include <QSettings>
 #include <QFile>
 #include <QSql>
+#include <QStatusBar>
 
 
 int main(int argc, char *argv[])
@@ -29,15 +30,30 @@ int main(int argc, char *argv[])
         c_ClinicTcpServer * server = new c_ClinicTcpServer(settContr.getSettings("server"));
         c_MySqlDatabaseController * dbContr = new c_MySqlDatabaseController(settContr.getSettings("databaseAuthentication"), settContr.getSettings("databaseClinic"));
 
+        server->setDbContr(dbContr);
+
         w->AddWatchedObject("server", dynamic_cast<i_Watched *> (server) );
+        QObject::connect(server,
+                SIGNAL(PropertiesChanged()),
+                w,
+                SLOT(refresh()));
         w->AddWatchedObject("databaseController", dynamic_cast<i_Watched *> (dbContr));
+        QObject::connect(dbContr,
+                SIGNAL(PropertiesChanged()),
+                w,
+                SLOT(refresh()));
+
+        QObject::connect(server,
+                         SIGNAL(MessageChanged(QString,int)),
+                         w,
+                         SLOT(changeStatusBarMessage(QString,int))
+                         );
 
         w->shareServerPointer();
         w->shareDbContrPointer();
 
-        w->refresh();
         w->MyShow();
-
+        w->refresh();
 
         return a.exec();
 

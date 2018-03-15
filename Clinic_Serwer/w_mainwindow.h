@@ -7,6 +7,8 @@
 #include "c_clinictcpserver.h"
 #include "c_mysqldatabasecontroller.h"
 #include "w_windowconfigurationdialog.h"
+#include "w_runserverdialog.h"
+#include "w_databaseconnectionsconfigurationdialog.h"
 
 #include <QMainWindow>
 #include <QSystemTrayIcon>
@@ -26,11 +28,18 @@ public:
     QMap<QString, QVariant> ShareProperties();
     void UpdateProperties(QMap<QString, QVariant> map);
 
-    void refresh();
+    void showEvent(QShowEvent *event);
+
     void shareServerPointer();
     void shareDbContrPointer();
 
     void MyShow();
+
+    QStatusBar GetStatusBar();
+
+public slots:
+    void refresh();
+    void changeStatusBarMessage(QString msg, int time);
 
 private slots:
     void on_actionServerConfigure_triggered();
@@ -46,6 +55,8 @@ private slots:
     void on_trayIcon_activated(QSystemTrayIcon::ActivationReason reason);
 
     void on_actionClose_triggered();
+
+    void on_actionDataBaseConfigure_triggered();
 
 private:
     void createTrayIcon();

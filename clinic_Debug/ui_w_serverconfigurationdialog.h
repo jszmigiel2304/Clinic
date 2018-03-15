@@ -43,7 +43,7 @@ public:
         w_serverConfigurationDialog->setMaximumSize(QSize(400, 400));
         buttonBox = new QDialogButtonBox(w_serverConfigurationDialog);
         buttonBox->setObjectName(QStringLiteral("buttonBox"));
-        buttonBox->setGeometry(QRect(50, 360, 341, 32));
+        buttonBox->setGeometry(QRect(50, 356, 341, 32));
         buttonBox->setOrientation(Qt::Horizontal);
         buttonBox->setStandardButtons(QDialogButtonBox::NoButton);
         portLineEdit = new QLineEdit(w_serverConfigurationDialog);

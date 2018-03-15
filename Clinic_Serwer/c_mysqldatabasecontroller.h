@@ -19,25 +19,63 @@ public:
     void UpdateProperties(QMap<QString, QVariant> map);
     ~c_MySqlDatabaseController();
 
-    void AddDatabase(QString name, QString driver);
+    void AddDatabase(QString name);
     void RemoveDatabase(QString name);
     void RemoveAllDatabases();
     void SetUpDatabase(QString name);
     void SetUpDatabase(QString name, QString hostName, int port, QString databaseName, QString userName, QString password);
     void SetUpDatabase(QString name, QMap<QString, QVariant> settings);
 
+    QString getAuthDbName() const;
+    void setAuthDbName(const QString &value);
+
+    QString getAuthDbHostName() const;
+    void setAuthDbHostName(const QString &value);
+
+    int getAuthDbPort() const;
+    void setAuthDbPort(int value);
+
+    QString getClinicDbHostName() const;
+    void setClinicDbHostName(const QString &value);
+
+    int getClinicDbPort() const;
+    void setClinicDbPort(int value);
+
+    QString getClinicDbName() const;
+    void setClinicDbName(const QString &value);
+
+    QString getAuthDriver() const;
+    void setAuthDriver(const QString &value);
+
+    QString getAuthDbUserName() const;
+    void setAuthDbUserName(const QString &value);
+
+    QString getAuthPassword() const;
+    void setAuthPassword(const QString &value);
+
+    QString getClinicDriver() const;
+    void setClinicDriver(const QString &value);
+
+    QString getClinicDbUserName() const;
+    void setClinicDbUserName(const QString &value);
+
+    QString getClinicPassword() const;
+    void setClinicPassword(const QString &value);
+
 signals:
     void PropertiesChanged();
 
 private:
-    QMap<QString, QSqlDatabase> databases;    
+    QMap<QString, QSqlDatabase> databases;
 
+    QString authDriver;
     QString authDbHostName;
     int authDbPort;
     QString authDbName;
     QString authDbUserName;
     QString authPassword;
 
+    QString clinicDriver;
     QString clinicDbHostName;
     int clinicDbPort;
     QString clinicDbName;

@@ -29,24 +29,24 @@ public:
     {
         if (w_initializeDialog->objectName().isEmpty())
             w_initializeDialog->setObjectName(QStringLiteral("w_initializeDialog"));
-        w_initializeDialog->resize(250, 160);
-        w_initializeDialog->setMinimumSize(QSize(250, 160));
-        w_initializeDialog->setMaximumSize(QSize(250, 160));
+        w_initializeDialog->resize(250, 80);
+        w_initializeDialog->setMinimumSize(QSize(250, 80));
+        w_initializeDialog->setMaximumSize(QSize(250, 80));
         w_initializeDialog->setStyleSheet(QStringLiteral("background-color: rgb(255, 255, 255);"));
         w_initializeDialog->setModal(true);
         describeLabel = new QLabel(w_initializeDialog);
         describeLabel->setObjectName(QStringLiteral("describeLabel"));
-        describeLabel->setGeometry(QRect(0, 0, 250, 40));
+        describeLabel->setGeometry(QRect(80, 0, 250, 80));
         describeLabel->setMinimumSize(QSize(0, 0));
         QFont font;
         font.setPointSize(10);
         font.setBold(true);
         font.setWeight(75);
         describeLabel->setFont(font);
-        describeLabel->setAlignment(Qt::AlignCenter);
+        describeLabel->setAlignment(Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter);
         processLabel = new QLabel(w_initializeDialog);
         processLabel->setObjectName(QStringLiteral("processLabel"));
-        processLabel->setGeometry(QRect(85, 40, 80, 80));
+        processLabel->setGeometry(QRect(0, 0, 250, 80));
 
         retranslateUi(w_initializeDialog);
 

@@ -15,7 +15,7 @@ public:
     virtual void ShareWatchedObject(QString sharedObjectName, i_Observer* object);
     virtual void DeleteWatchedObject(QString name);
     virtual QMap<QString , QVariant> GetWatchedObjectProperties(QString name);
-
+    virtual QString GetWatchedObjectMessage(QString name);
 
 };
 

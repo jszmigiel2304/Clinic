@@ -12,6 +12,11 @@ INPUT(
 ./debug\w_databaseinformationswidget.o
 ./debug\c_mysqldatabasecontroller.o
 ./debug\w_windowconfigurationdialog.o
+./debug\w_runserverdialog.o
+./debug\w_databaseconnectionwidget.o
+./debug\w_databaseconnectionsconfigurationdialog.o
+./debug\c_myconnection.o
+./debug\c_mydatabaseconnection.o
 ./debug\qrc_icons.o
 ./debug\qrc_gifs.o
 ./debug\moc_w_mainwindow.o
@@ -23,4 +28,9 @@ INPUT(
 ./debug\moc_w_databaseinformationswidget.o
 ./debug\moc_c_mysqldatabasecontroller.o
 ./debug\moc_w_windowconfigurationdialog.o
+./debug\moc_w_runserverdialog.o
+./debug\moc_w_databaseconnectionwidget.o
+./debug\moc_w_databaseconnectionsconfigurationdialog.o
+./debug\moc_c_myconnection.o
+./debug\moc_c_mydatabaseconnection.o
 );

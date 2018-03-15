@@ -52,12 +52,35 @@ void w_MainWindow::UpdateProperties(QMap<QString, QVariant> map)
     emit this->PropertiesChanged();
 }
 
-void w_MainWindow::refresh()
+void w_MainWindow::showEvent(QShowEvent *event)
 {
+}
+
+void w_MainWindow::refresh()
+{    
+    QMap<QString, QVariant> map = this->GetWatchedObjectProperties("server");
+
+    if(map["isListening"].toBool())
+    {
+        ui->actionServerStart->setEnabled(false);
+        ui->actionServerStop->setEnabled(true);
+        ui->actionServerConfigure->setEnabled(false);
+    }
+    else
+    {
+        ui->actionServerStart->setEnabled(true);
+        ui->actionServerConfigure->setEnabled(true);
+        ui->actionServerStop->setEnabled(false);
+    }
     ui->interfaceInfoArea->refresh();
     ui->serverInfoArea->refresh();
     ui->authDbInfoArea->refresh();
     ui->clinicDbInfoArea->refresh();
+}
+
+void w_MainWindow::changeStatusBarMessage(QString msg, int time)
+{
+    ui->statusBar->showMessage(msg, time);
 }
 
 void w_MainWindow::shareServerPointer()
@@ -117,6 +140,7 @@ void w_MainWindow::MyShow()
         this->show();
 }
 
+
 void w_MainWindow::on_actionServerConfigure_triggered()
 {
     if((this->watchedObjectsList["server"]->ShareProperties())["isListening"].toBool())
@@ -137,30 +161,24 @@ void w_MainWindow::on_actionServerConfigure_triggered()
 
 void w_MainWindow::on_actionServerStart_triggered()
 {
-    (dynamic_cast<c_ClinicTcpServer *>(this->watchedObjectsList["server"]))->listen();
+    (dynamic_cast<c_ClinicTcpServer *>(this->watchedObjectsList["server"]))->runServer();
+
     ui->actionServerStart->setEnabled(false);
     ui->actionServerStop->setEnabled(true);
     ui->actionServerConfigure->setEnabled(false);
 
-    (dynamic_cast<c_MySqlDatabaseController *>(this->watchedObjectsList["databaseController"]))->AddDatabase("Authorization", "QPSQL");
-    (dynamic_cast<c_MySqlDatabaseController *>(this->watchedObjectsList["databaseController"]))->AddDatabase("Clinic", "QPSQL");
-    (dynamic_cast<c_MySqlDatabaseController *>(this->watchedObjectsList["databaseController"]))->SetUpDatabase("Authorization");
-    (dynamic_cast<c_MySqlDatabaseController *>(this->watchedObjectsList["databaseController"]))->SetUpDatabase("Clinic");
-
-
-    emit (dynamic_cast<c_ClinicTcpServer *>(this->watchedObjectsList["server"]))->PropertiesChanged();
-    emit (dynamic_cast<c_MySqlDatabaseController *>(this->watchedObjectsList["databaseController"]))->PropertiesChanged();
+    ui->actionDataBaseConfigure->setEnabled(false);
 }
 
 void w_MainWindow::on_actionServerStop_triggered()
 {
-    (dynamic_cast<c_ClinicTcpServer *>(this->watchedObjectsList["server"]))->close();
-    (dynamic_cast<c_MySqlDatabaseController *>(this->watchedObjectsList["databaseController"]))->RemoveAllDatabases();
+    (dynamic_cast<c_ClinicTcpServer *>(this->watchedObjectsList["server"]))->stopServer();
+
     ui->actionServerStart->setEnabled(true);
     ui->actionServerConfigure->setEnabled(true);
     ui->actionServerStop->setEnabled(false);
-    emit (dynamic_cast<c_ClinicTcpServer *>(this->watchedObjectsList["server"]))->PropertiesChanged();
-    emit (dynamic_cast<c_MySqlDatabaseController *>(this->watchedObjectsList["databaseController"]))->PropertiesChanged();
+
+    ui->actionDataBaseConfigure->setEnabled(true);
 }
 
 void w_MainWindow::on_actionWindowConfigure_triggered()
@@ -207,11 +225,11 @@ void w_MainWindow::closeEvent(QCloseEvent *event)
 
         QIcon icon(":/actions/icons/appIcon.png");
         this->trayIcon->showMessage("Przychodnia - Serwer", "Zminimalizowano do zasobnika systemowego.", icon ,1500);
-        this->on_actionServerStop_triggered();
         event->ignore();
     }
     else
-    {
+    {        
+        this->on_actionServerStop_triggered();
         QIcon icon(":/actions/icons/appIcon.png");
         this->trayIcon->showMessage("Przychodnia - Serwer", "Trwa zamykanie.", icon ,1000);
         event->accept();
@@ -234,4 +252,23 @@ void w_MainWindow::on_actionClose_triggered()
 {
     this->minimizeToTrayOnClose = false;
     this->close();
+}
+
+void w_MainWindow::on_actionDataBaseConfigure_triggered()
+{
+    if((this->watchedObjectsList["server"]->ShareProperties())["isListening"].toBool())
+    {
+        QMessageBox::information(
+                this,
+                tr("Informacja"),
+                tr("Server jest w trybie nasłuchiwania.\nZatrzymaj zanim zaczniesz konfigurację.") );
+    } else
+    {
+        w_DatabaseConnectionsConfigurationDialog * wnd = new w_DatabaseConnectionsConfigurationDialog(this);
+        //wnd->AddWatchedObject("server", this->watchedObjectsList["server"]);
+        this->ShareWatchedObject("databaseController", wnd);
+        wnd->shareDbContrPointer();
+        wnd->update();
+        wnd->show();
+    }
 }

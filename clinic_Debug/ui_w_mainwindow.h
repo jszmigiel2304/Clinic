@@ -17,6 +17,7 @@
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QMenu>
 #include <QtWidgets/QMenuBar>
+#include <QtWidgets/QStatusBar>
 #include <QtWidgets/QToolBar>
 #include <QtWidgets/QWidget>
 #include "w_databaseinformationswidget.h"
@@ -44,14 +45,15 @@ public:
     QMenuBar *menuBar;
     QMenu *menuSerwer;
     QMenu *menuUstawienia;
+    QStatusBar *statusBar;
 
     void setupUi(QMainWindow *w_MainWindow)
     {
         if (w_MainWindow->objectName().isEmpty())
             w_MainWindow->setObjectName(QStringLiteral("w_MainWindow"));
-        w_MainWindow->resize(800, 600);
-        w_MainWindow->setMinimumSize(QSize(800, 600));
-        w_MainWindow->setMaximumSize(QSize(800, 600));
+        w_MainWindow->resize(800, 630);
+        w_MainWindow->setMinimumSize(QSize(800, 630));
+        w_MainWindow->setMaximumSize(QSize(800, 630));
         QIcon icon;
         icon.addFile(QStringLiteral(":/actions/icons/appIcon.png"), QSize(), QIcon::Normal, QIcon::Off);
         w_MainWindow->setWindowIcon(icon);
@@ -110,6 +112,9 @@ public:
         menuUstawienia = new QMenu(menuBar);
         menuUstawienia->setObjectName(QStringLiteral("menuUstawienia"));
         w_MainWindow->setMenuBar(menuBar);
+        statusBar = new QStatusBar(w_MainWindow);
+        statusBar->setObjectName(QStringLiteral("statusBar"));
+        w_MainWindow->setStatusBar(statusBar);
 
         mainToolBar->addAction(actionServerStart);
         mainToolBar->addAction(actionServerStop);
