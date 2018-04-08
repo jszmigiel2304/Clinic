@@ -1,0 +1,49 @@
+#ifndef W_SERVERCONNECTIONDIALOG_H
+#define W_SERVERCONNECTIONDIALOG_H
+
+#include "i_observer.h"
+#include "c_settingscontroller.h"
+#include "m_filespaths.h"
+#include "w_loggingdialog.h"
+#include "c_myconnectiontester.h"
+
+#include <QDialog>
+#include <QPushButton>
+#include <QApplication>
+#include <QHostAddress>
+#include <QTimer>
+
+namespace Ui {
+class w_ServerConnectionDialog;
+}
+
+class w_ServerConnectionDialog : public QDialog, public i_Observer
+{
+    Q_OBJECT
+
+public:
+    explicit w_ServerConnectionDialog(QWidget *parent = 0);
+    ~w_ServerConnectionDialog();
+    void update();
+
+private:
+    Ui::w_ServerConnectionDialog *ui;
+    bool isChanged;
+
+
+private slots:
+    void settingsChanged(bool);
+    void settingsChanged(QString);
+    void validateAddress();
+    void validatePort();
+    void okButtonPressed();
+    void resetButtonPressed();
+    void applyButtonPressed();
+    void closeEvent(QCloseEvent * e);
+    bool addressIsValid();
+    bool portIsValid();
+    void on_b_test_clicked();
+    void refreshButtonOnTimeOut();
+};
+
+#endif // W_SERVERCONNECTIONDIALOG_H

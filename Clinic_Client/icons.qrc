@@ -1,0 +1,14 @@
+<RCC>
+    <qresource prefix="/">
+        <file>icons/appIcon.png</file>
+        <file>icons/arrow_down.png</file>
+        <file>icons/configure2.png</file>
+        <file>icons/arrow_up.png</file>
+        <file>icons/test_fail.png</file>
+        <file>icons/test_ok.png</file>
+        <file>icons/test_ok_green.png</file>
+        <file>icons/connect.png</file>
+        <file>icons/reset.png</file>
+        <file>icons/test_connection.png</file>
+    </qresource>
+</RCC>
