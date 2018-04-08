@@ -22,6 +22,7 @@ w_MainWindow::w_MainWindow(QMap<QString, QVariant> settings, QWidget *parent) :
     ui->actionServerConfigure->setEnabled(true);
     ui->actionServerStart->setEnabled(true);
     ui->actionServerStop->setEnabled(false);
+    ui->actionHostsList->setEnabled(true);
 
     ui->authDbInfoArea->setName("Authorization database");
     ui->clinicDbInfoArea->setName("Clinic database");
@@ -34,12 +35,16 @@ w_MainWindow::~w_MainWindow()
     delete ui;
 }
 
-QMap<QString, QVariant> w_MainWindow::ShareProperties()
+QMap<QString, QVariant> w_MainWindow::ShareProperties(QString sharedData)
 {
     QMap<QString, QVariant> map;
 
-    map.insert("startMinimize", this->startMinimize);
-    map.insert("minimizeToTrayOnClose", this->minimizeToTrayOnClose);
+
+    if(sharedData == "all" || sharedData == "basicOnly")
+    {
+        map.insert("startMinimize", this->startMinimize);
+        map.insert("minimizeToTrayOnClose", this->minimizeToTrayOnClose);
+    }
 
     return map;
 }
@@ -143,7 +148,7 @@ void w_MainWindow::MyShow()
 
 void w_MainWindow::on_actionServerConfigure_triggered()
 {
-    if((this->watchedObjectsList["server"]->ShareProperties())["isListening"].toBool())
+    if((this->watchedObjectsList["server"]->ShareProperties("basicOnly"))["isListening"].toBool())
     {
         QMessageBox::information(
                 this,
@@ -204,6 +209,7 @@ void w_MainWindow::createTrayIcon()
     trayIconMenu->addAction(ui->actionServerStart);
     trayIconMenu->addAction(ui->actionServerStop);
     trayIconMenu->addAction(ui->actionServerConfigure);
+    trayIconMenu->addAction(ui->actionHostsList);
     trayIconMenu->addSeparator();
     trayIconMenu->addAction(ui->actionDataBaseConfigure);
     trayIconMenu->addSeparator();
@@ -232,10 +238,13 @@ void w_MainWindow::closeEvent(QCloseEvent *event)
         this->on_actionServerStop_triggered();
         QIcon icon(":/actions/icons/appIcon.png");
         this->trayIcon->showMessage("Przychodnia - Serwer", "Trwa zamykanie.", icon ,1000);
+
+        if(w_HostsListWindow::Instance().getIsShown())
+            w_HostsListWindow::Instance().close();
+
         event->accept();
     }
 }
-
 
 void w_MainWindow::on_actionOpen_triggered()
 {
@@ -256,7 +265,7 @@ void w_MainWindow::on_actionClose_triggered()
 
 void w_MainWindow::on_actionDataBaseConfigure_triggered()
 {
-    if((this->watchedObjectsList["server"]->ShareProperties())["isListening"].toBool())
+    if((this->watchedObjectsList["server"]->ShareProperties("basicOnly"))["isListening"].toBool())
     {
         QMessageBox::information(
                 this,
@@ -271,4 +280,15 @@ void w_MainWindow::on_actionDataBaseConfigure_triggered()
         wnd->update();
         wnd->show();
     }
+}
+
+void w_MainWindow::on_actionHostsList_triggered()
+{
+    this->show();
+    this->ShareWatchedObject("server", &w_HostsListWindow::Instance());
+    w_HostsListWindow::Instance().update();
+    w_HostsListWindow::Instance().show();
+    w_HostsListWindow::Instance().setIsShown(true);
+    w_HostsListWindow::Instance().activateWindow();
+    w_HostsListWindow::Instance().raise();
 }

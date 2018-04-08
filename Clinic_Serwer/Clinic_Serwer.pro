@@ -41,7 +41,10 @@ SOURCES += \
     w_databaseconnectionwidget.cpp \
     w_databaseconnectionsconfigurationdialog.cpp \
     c_myconnection.cpp \
-    c_mydatabaseconnection.cpp
+    c_mydatabaseconnection.cpp \
+    c_clientconnection.cpp \
+    w_hostslistdialog.cpp \
+    w_hostslistwindow.cpp
 
 HEADERS += \
         w_mainwindow.h \
@@ -63,7 +66,10 @@ HEADERS += \
     w_databaseconnectionsconfigurationdialog.h \
     m_databasedrivers.h \
     c_myconnection.h \
-    c_mydatabaseconnection.h
+    c_mydatabaseconnection.h \
+    c_clientconnection.h \
+    w_hostslistdialog.h \
+    w_hostslistwindow.h
 
 FORMS += \
         w_mainwindow.ui \
@@ -75,12 +81,12 @@ FORMS += \
     w_windowconfigurationdialog.ui \
     w_runserverdialog.ui \
     w_databaseconnectionwidget.ui \
-    w_databaseconnectionsconfigurationdialog.ui
+    w_databaseconnectionsconfigurationdialog.ui \
+    w_hostslistdialog.ui \
+    w_hostslistwindow.ui
 
 DISTFILES += \
     styles.css \
-    config2.ini \
-    config3.ini \
     config.ini
 
 RESOURCES += \

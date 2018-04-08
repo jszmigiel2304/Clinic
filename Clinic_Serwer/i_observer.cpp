@@ -20,9 +20,9 @@ void i_Observer::DeleteWatchedObject(QString name)
     this->watchedObjectsList.remove(name);
 }
 
-QMap<QString, QVariant> i_Observer::GetWatchedObjectProperties(QString name)
+QMap<QString, QVariant> i_Observer::GetWatchedObjectProperties(QString name, QString sharedData)
 {
-    return this->watchedObjectsList[name]->ShareProperties();
+    return this->watchedObjectsList[name]->ShareProperties(sharedData);
 }
 
 QString i_Observer::GetWatchedObjectMessage(QString name)

@@ -27,7 +27,6 @@ public:
     void update();
 
 
-
 private:
     Ui::w_serverConfigurationDialog *ui;
     QList<QRadioButton *> interfacesRadioButtonList;

@@ -63,7 +63,7 @@ w_serverConfigurationDialog::~w_serverConfigurationDialog()
 
 QMap<QString, QVariant> w_serverConfigurationDialog::getServerProperties()
 {
-    QMap<QString, QVariant> map = this->watchedObjectsList["server"]->ShareProperties();
+    QMap<QString, QVariant> map = this->watchedObjectsList["server"]->ShareProperties("basicOnly");
 
     return map;
 }

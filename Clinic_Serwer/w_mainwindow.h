@@ -9,6 +9,8 @@
 #include "w_windowconfigurationdialog.h"
 #include "w_runserverdialog.h"
 #include "w_databaseconnectionsconfigurationdialog.h"
+#include "w_hostslistdialog.h"
+#include "w_hostslistwindow.h"
 
 #include <QMainWindow>
 #include <QSystemTrayIcon>
@@ -25,7 +27,7 @@ public:
     explicit w_MainWindow(QWidget *parent = 0);    
     explicit w_MainWindow(QMap<QString, QVariant> settings, QWidget *parent = 0);
     ~w_MainWindow();
-    QMap<QString, QVariant> ShareProperties();
+    QMap<QString, QVariant> ShareProperties(QString sharedData = "all");
     void UpdateProperties(QMap<QString, QVariant> map);
 
     void showEvent(QShowEvent *event);
@@ -58,6 +60,8 @@ private slots:
 
     void on_actionDataBaseConfigure_triggered();
 
+    void on_actionHostsList_triggered();
+
 private:
     void createTrayIcon();
     void closeEvent(QCloseEvent * event);
@@ -68,6 +72,8 @@ private:
 
     QSystemTrayIcon * trayIcon;
     QMenu * trayIconMenu;
+
+    w_HostsListWindow * hostsListWindow;
 
 signals:
     void PropertiesChanged();

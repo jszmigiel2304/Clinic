@@ -48,7 +48,7 @@ w_windowConfigurationDialog::~w_windowConfigurationDialog()
 
 QMap<QString, QVariant> w_windowConfigurationDialog::getWindowProperties()
 {
-    QMap<QString, QVariant> map = this->watchedObjectsList["appWindow"]->ShareProperties();
+    QMap<QString, QVariant> map = this->watchedObjectsList["appWindow"]->ShareProperties("basicOnly");
 
     return map;
 }

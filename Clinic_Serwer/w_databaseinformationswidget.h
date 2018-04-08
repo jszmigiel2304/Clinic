@@ -4,6 +4,7 @@
 #include "i_observer.h"
 
 #include <QWidget>
+#include <QTimer>
 
 namespace Ui {
 class w_DatabaseInformationsWidget;
@@ -24,6 +25,7 @@ public slots:
 private:
     Ui::w_DatabaseInformationsWidget *ui;
     QString dbName;
+    QTimer * timer;
 };
 
 #endif // W_DATABASEINFORMATIONSWIDGET_H

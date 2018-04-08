@@ -15,6 +15,9 @@
         <file>icons/if_sign-error_299045.png</file>
         <file>icons/error80x80.png</file>
         <file>icons/appIcon.png</file>
+        <file>icons/if_multimedia-37_809491 (1).png</file>
+        <file>icons/if_refresh27_216529.png</file>
+        <file>icons/if_cross_48_10298.png</file>
     </qresource>
     <qresource prefix="/gifs"/>
 </RCC>

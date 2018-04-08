@@ -81,6 +81,7 @@
    <addaction name="actionServerStart"/>
    <addaction name="actionServerStop"/>
    <addaction name="actionServerConfigure"/>
+   <addaction name="actionHostsList"/>
    <addaction name="separator"/>
    <addaction name="actionDataBaseConfigure"/>
    <addaction name="separator"/>
@@ -101,6 +102,8 @@
     </property>
     <addaction name="actionServerStart"/>
     <addaction name="actionServerStop"/>
+    <addaction name="separator"/>
+    <addaction name="actionHostsList"/>
     <addaction name="separator"/>
     <addaction name="actionClose"/>
    </widget>
@@ -178,6 +181,18 @@
   <action name="actionOpen">
    <property name="text">
     <string>Otwórz</string>
+   </property>
+  </action>
+  <action name="actionHostsList">
+   <property name="icon">
+    <iconset resource="icons.qrc">
+     <normaloff>:/actions/icons/if_multimedia-37_809491 (1).png</normaloff>:/actions/icons/if_multimedia-37_809491 (1).png</iconset>
+   </property>
+   <property name="text">
+    <string>Lista komputerów</string>
+   </property>
+   <property name="toolTip">
+    <string>Lista podłączonych komputerów</string>
    </property>
   </action>
  </widget>

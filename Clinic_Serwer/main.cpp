@@ -1,4 +1,5 @@
 #include "w_mainwindow.h"
+#include "c_clientconnection.h"
 #include "c_clinictcpserver.h"
 #include "m_fileMacros.h"
 #include "c_settingscontroller.h"
@@ -16,6 +17,8 @@ int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);    
     c_SettingsController settContr(INI_FILE);
+
+    a.setApplicationName("Clinic - Server");
 
     w_initializeDialog * init = new w_initializeDialog(&a, &settContr);
     init->show();

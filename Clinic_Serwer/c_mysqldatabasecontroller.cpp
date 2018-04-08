@@ -30,25 +30,36 @@ c_MySqlDatabaseController::c_MySqlDatabaseController(QMap<QString, QVariant> aut
     this->clinicPassword = clinicDbSettings["password"].toString();
 }
 
-QMap<QString, QVariant> c_MySqlDatabaseController::ShareProperties()
+QMap<QString, QVariant> c_MySqlDatabaseController::ShareProperties(QString sharedData)
 {
     QMap<QString, QVariant> map;
 
-    map.insert("authDbStatus", QSqlDatabase::database("Authorization").isOpen());
-    map.insert("authDriver", this->authDriver);
-    map.insert("authAddress", this->authDbHostName);
-    map.insert("authPort", this->authDbPort);
-    map.insert("authDbName", this->authDbName);
-    map.insert("authPassword", this->authPassword);
-    map.insert("authUserName", this->authDbUserName);
 
-    map.insert("clinicDbStatus", QSqlDatabase::database("Clinic").isOpen());
-    map.insert("clinicDriver", this->clinicDriver);
-    map.insert("clinicAddress", this->clinicDbHostName);
-    map.insert("clinicPort", this->clinicDbPort);
-    map.insert("clinicDbName", this->clinicDbName);
-    map.insert("clinicPassword", this->clinicPassword);
-    map.insert("clinicUserName", this->clinicDbUserName);
+    if(sharedData == "all" || sharedData == "basicOnly" || sharedData == "authOnly")
+    {
+        map.insert("authDbStatus", QSqlDatabase::database("Authorization").isOpen() );
+        map.insert("authDriver", this->authDriver);
+        map.insert("authAddress", this->authDbHostName);
+        map.insert("authPort", this->authDbPort);
+        map.insert("authDbName", this->authDbName);
+        map.insert("authPassword", this->authPassword);
+        map.insert("authUserName", this->authDbUserName);
+
+    }
+
+
+    if(sharedData == "all" || sharedData == "basicOnly" || sharedData == "clinicOnly")
+    {
+        map.insert("clinicDbStatus", QSqlDatabase::database("Clinic").isOpen() );
+        map.insert("clinicDriver", this->clinicDriver);
+        map.insert("clinicAddress", this->clinicDbHostName);
+        map.insert("clinicPort", this->clinicDbPort);
+        map.insert("clinicDbName", this->clinicDbName);
+        map.insert("clinicPassword", this->clinicPassword);
+        map.insert("clinicUserName", this->clinicDbUserName);
+
+    }
+
 
     return map;
 }
@@ -95,9 +106,13 @@ void c_MySqlDatabaseController::RemoveDatabase(QString name)
 
 void c_MySqlDatabaseController::RemoveAllDatabases()
 {
-    foreach (QSqlDatabase db, this->databases) {
-        this->RemoveDatabase(db.connectionName());
+    foreach (QString connectionName, QSqlDatabase::connectionNames()) {
+        this->RemoveDatabase(connectionName);
+
     }
+//    foreach (QSqlDatabase db, this->databases) {
+//        this->RemoveDatabase(db.connectionName());
+//    }
 }
 
 void c_MySqlDatabaseController::SetUpDatabase(QString name)

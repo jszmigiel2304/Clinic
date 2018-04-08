@@ -5,8 +5,10 @@ c_ClinicTcpServer::c_ClinicTcpServer()
 
 }
 
-c_ClinicTcpServer::c_ClinicTcpServer(QMap<QString, QVariant> settings)
+c_ClinicTcpServer::c_ClinicTcpServer(QMap<QString, QVariant> settings, QObject *parent) :
+    QTcpServer(parent)
 {
+
     this->iterfaceName = settings["interfaceName"].toString();
     this->port = settings["port"].toInt();
 
@@ -30,13 +32,26 @@ c_ClinicTcpServer::~c_ClinicTcpServer()
 
 }
 
-QMap<QString, QVariant> c_ClinicTcpServer::ShareProperties()
+QMap<QString, QVariant> c_ClinicTcpServer::ShareProperties(QString sharedData)
 {
     QMap<QString, QVariant> map;
-    map.insert("port", this->port);
-    map.insert("interfaceName", this->iterfaceName);
-    map.insert("address", this->address.toString());
-    map.insert("isListening", this->isListening());
+
+    if(sharedData == "all" || sharedData == "basicOnly")
+    {
+        map.insert("port", this->port);
+        map.insert("interfaceName", this->iterfaceName);
+        map.insert("address", this->address.toString());
+        map.insert("isListening", this->isListening());
+        map.insert("hostsNumber", this->hostsList.count());
+    }
+
+    if(sharedData == "all" || sharedData == "hostsOnly")
+    {
+        foreach (c_ClientConnection * host, this->hostsList) {
+            int soc =  host->getSocket()->socketDescriptor();
+            map.insertMulti(host->getSocket()->peerAddress().toString(), soc );
+        }
+    }
 
     return map;
 }
@@ -74,20 +89,6 @@ void c_ClinicTcpServer::runServer()
         this->status = "   [ Authorization Database Connection ] Błąd";
     }
 
-//    socket->connectToHost(dbContr->getAuthDbHostName(), dbContr->getAuthDbPort());
-//    if(socket->waitForConnected(5000))
-//    {
-//        dbContr->AddDatabase("Authorization");
-//        dbContr->SetUpDatabase("Authorization");
-//        socket->disconnectFromHost();
-//        this->status = "   [ Authorization Database Connection ] Poprawnie skonfigurowane";
-//    }
-//    else
-//    {
-//        socket->disconnectFromHost();
-//        this->status = "   [ Authorization Database Connection ] Błąd";
-//    }
-
     emit this->MessageChanged(this->status, 1000);
 
 
@@ -119,21 +120,6 @@ void c_ClinicTcpServer::runServer()
         this->status = "   [ Clinic Database Connection ] Błąd";
     }
 
-
-//    socket->connectToHost(dbContr->getClinicDbHostName(), dbContr->getClinicDbPort());
-//    if(socket->waitForConnected(3000))
-//    {
-//        dbContr->AddDatabase("Clinic");
-//        dbContr->SetUpDatabase("Clinic");
-//        socket->disconnectFromHost();
-//        this->status = "   [ Clinic Database Connection ] Poprawnie skonfigurowane";
-//    }
-//    else
-//    {
-//        socket->disconnectFromHost();
-//        this->status = "   [ Clinic Database Connection ] Błąd";
-//    }
-
     emit this->MessageChanged(this->status, 1000);
 
     this->status = "Uruchamiam serwer.";
@@ -141,7 +127,7 @@ void c_ClinicTcpServer::runServer()
     emit this->MessageChanged(this->status, -1);
 
 
-    this->listen();
+    this->listen(this->address, this->port);
 
     if(!this->isListening())
     {
@@ -154,7 +140,7 @@ void c_ClinicTcpServer::runServer()
         emit this->MessageChanged(this->status, 2000);
     }
 
-    delete socket;
+    delete socket;    
 
     emit this->PropertiesChanged();
     emit this->dbContr->PropertiesChanged();
@@ -162,6 +148,7 @@ void c_ClinicTcpServer::runServer()
 
 void c_ClinicTcpServer::stopServer()
 {
+    this->removeClients();
     this->close();
     this->dbContr->RemoveAllDatabases();
 
@@ -170,6 +157,17 @@ void c_ClinicTcpServer::stopServer()
 
     this->status = "[Server TCP] Zatrzymano";
     emit this->MessageChanged(this->status, 2000);
+
+}
+
+void c_ClinicTcpServer::startServer()
+{
+        if(!this->listen(this->address, this->port))
+        {
+        }
+        else
+        {
+        }
 
 }
 
@@ -194,8 +192,68 @@ void c_ClinicTcpServer::UpdateProperties(QMap<QString, QVariant> map)
     emit this->PropertiesChanged();
 }
 
+QList<c_ClientConnection *> c_ClinicTcpServer::getHostsList() const
+{
+    return hostsList;
+}
+
+void c_ClinicTcpServer::incomingConnection(qintptr socketDescriptor)
+{
+    c_ClientConnection *connection = new c_ClientConnection(socketDescriptor, this);
+
+    connect(connection, SIGNAL(finished()), connection, SLOT(deleteLater()));
+
+    connection->start();
+}
+
 void c_ClinicTcpServer::setDbContr(c_MySqlDatabaseController *value)
 {
     dbContr = value;
+}
+
+void c_ClinicTcpServer::newClient(c_ClientConnection *connection)
+{
+    this->hostsList.push_back(connection);
+    emit this->PropertiesChanged();
+}
+
+void c_ClinicTcpServer::removeClient(qintptr id)
+{
+    for(int i = this->hostsList.count() - 1; i >= 0; i--)
+    {
+        if(hostsList[i]->getSocketDescriptor() == id)
+        {
+            hostsList.removeAt(i);
+            break;
+        }
+        //this->hostsList[i]->disconnected();
+    }
+
+//    QMutableListIterator<c_ClientConnection *> iterator(this->hostsList);
+
+//    while(iterator.hasNext())
+//    {
+//        if(iterator.next()->getSocketDescriptor() == id)
+//        {
+//            iterator.remove();
+//            break;
+//        }
+//    }
+
+    emit this->PropertiesChanged();
+}
+
+void c_ClinicTcpServer::removeClient(c_ClientConnection *connection)
+{
+}
+
+void c_ClinicTcpServer::removeClients()
+{
+    for(int i = this->hostsList.count() - 1; i >= 0; i--)
+    {
+        hostsList[i]->disconnected();
+    }
+
+    hostsList.clear();
 }
 

@@ -60,7 +60,7 @@ void w_DatabaseConnectionWidget::update()
 
 QMap<QString, QVariant> w_DatabaseConnectionWidget::getDbControllerProperties()
 {
-    QMap<QString, QVariant> map = this->GetWatchedObjectProperties("databaseController");
+    QMap<QString, QVariant> map = this->GetWatchedObjectProperties("databaseController", "basicOnly");
 
     return map;
 }

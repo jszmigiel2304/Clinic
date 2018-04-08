@@ -11,10 +11,21 @@ w_DatabaseInformationsWidget::w_DatabaseInformationsWidget(QWidget *parent) :
     ui->l_port->setStyleSheet("font: bold;");
     ui->l_dbName->setStyleSheet("font: bold;");
     ui->l_dbStatus->setStyleSheet("font: bold;");
+
+    this->timer = new QTimer(this);
+    connect(
+            this->timer,
+            SIGNAL(timeout()),
+            this,
+            SLOT(refresh())
+            );
+
+    this->timer->start(5000);
 }
 
 w_DatabaseInformationsWidget::~w_DatabaseInformationsWidget()
 {
+    this->timer->deleteLater();
     delete ui;
 }
 
@@ -27,7 +38,7 @@ void w_DatabaseInformationsWidget::refresh()
 {
     ui->databseInfoGroupBox->setTitle(this->dbName);
 
-    QMap<QString, QVariant> map = this->GetWatchedObjectProperties("databaseController");
+    QMap<QString, QVariant> map = this->GetWatchedObjectProperties("databaseController" , "basicOnly");
 
     if(this->dbName == "Authorization database")
     {

@@ -2,6 +2,7 @@
 #define C_MYSQLDATABASECONTROLLER_H
 
 #include "i_watched.h"
+#include "c_mydatabaseconnection.h"
 
 #include <QObject>
 #include <QSql>
@@ -15,7 +16,7 @@ public:
     c_MySqlDatabaseController();
     c_MySqlDatabaseController(QMap<QString, QVariant> settings);
     c_MySqlDatabaseController(QMap<QString, QVariant> authDbSettings, QMap<QString, QVariant> clinicDbSettings);
-    QMap<QString, QVariant> ShareProperties();
+    QMap<QString, QVariant> ShareProperties(QString sharedData = "all");
     void UpdateProperties(QMap<QString, QVariant> map);
     ~c_MySqlDatabaseController();
 

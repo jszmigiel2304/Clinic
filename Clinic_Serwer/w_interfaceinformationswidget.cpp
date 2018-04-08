@@ -25,7 +25,7 @@ w_InterfaceInformationsWidget::~w_InterfaceInformationsWidget()
 
 void w_InterfaceInformationsWidget::refresh()
 {    
-    QMap<QString, QVariant> map = this->GetWatchedObjectProperties("server");
+    QMap<QString, QVariant> map = this->GetWatchedObjectProperties("server", "basicOnly");
     QString interfaceName = map["interfaceName"].toString();
 
     if(interfaceName != "any")
