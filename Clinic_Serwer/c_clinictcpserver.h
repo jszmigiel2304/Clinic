@@ -7,11 +7,14 @@
 #include "c_mydatabaseconnection.h"
 #include "c_clientconnection.h"
 #include "c_myconnection.h"
+#include "w_logswindow.h"
 
 #include <QTcpServer>
 #include <QNetworkInterface>
 #include <QTcpSocket>
 #include <QMessageBox>
+#include <QDataStream>
+#include <QTextStream>
 #include <QList>
 
 class c_ClinicTcpServer : public QTcpServer, public i_Watched
@@ -19,7 +22,7 @@ class c_ClinicTcpServer : public QTcpServer, public i_Watched
     Q_OBJECT
 public:
     c_ClinicTcpServer();
-    c_ClinicTcpServer(QMap<QString, QVariant> settings, QObject *parent = 0);
+    c_ClinicTcpServer(QMap<QString, QVariant> settings, QObject *parent = nullptr);
     ~c_ClinicTcpServer();
     QMap<QString, QVariant> ShareProperties(QString sharedData = "all");
     QString ShareMessege();
@@ -29,9 +32,9 @@ public:
     void startServer();
 
     void setDbContr(c_MySqlDatabaseController *value);
-    void newClient(c_ClientConnection *connection = 0);
+    void newClient(c_ClientConnection *connection = nullptr);
     void removeClient(qintptr id);
-    void removeClient(c_ClientConnection *connection = 0);
+    void removeClient(c_ClientConnection *connection = nullptr);
     void removeClients();
 
     QList<c_ClientConnection *> getHostsList() const;
@@ -44,7 +47,7 @@ signals:
     void MessageChanged(QString msg, int time);
 
 private:
-    int port;
+    quint16 port;
     QString iterfaceName;
     QHostAddress address;
     QString status;
@@ -52,6 +55,8 @@ private:
     c_MySqlDatabaseController * dbContr;
 
     QList<c_ClientConnection *> hostsList;
+
+    w_logsWindow * logs;
 
 protected:
     void incomingConnection(qintptr socketDescriptor);

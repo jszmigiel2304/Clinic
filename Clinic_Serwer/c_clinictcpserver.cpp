@@ -10,7 +10,7 @@ c_ClinicTcpServer::c_ClinicTcpServer(QMap<QString, QVariant> settings, QObject *
 {
 
     this->iterfaceName = settings["interfaceName"].toString();
-    this->port = settings["port"].toInt();
+    this->port = quint16(settings["port"].toInt());
 
         if(settings["interfaceName"].toString() == "any")
             this->address = QHostAddress::Any;
@@ -25,11 +25,12 @@ c_ClinicTcpServer::c_ClinicTcpServer(QMap<QString, QVariant> settings, QObject *
             this->address = ((interface.addressEntries())[interface.addressEntries().length() - 1]).ip();
         }
 
+        logs = w_logsWindow::Instance();
+
 }
 
 c_ClinicTcpServer::~c_ClinicTcpServer()
 {
-
 }
 
 QMap<QString, QVariant> c_ClinicTcpServer::ShareProperties(QString sharedData)
@@ -48,7 +49,7 @@ QMap<QString, QVariant> c_ClinicTcpServer::ShareProperties(QString sharedData)
     if(sharedData == "all" || sharedData == "hostsOnly")
     {
         foreach (c_ClientConnection * host, this->hostsList) {
-            int soc =  host->getSocket()->socketDescriptor();
+            qintptr soc =  host->getSocket()->socketDescriptor();
             map.insertMulti(host->getSocket()->peerAddress().toString(), soc );
         }
     }
@@ -83,10 +84,16 @@ void c_ClinicTcpServer::runServer()
         dbContr->AddDatabase("Authorization");
         dbContr->SetUpDatabase("Authorization");
         this->status = "   [ Authorization Database Connection ] Poprawnie skonfigurowane";
+
+        QString log = QString("[ Authorization Database Connection ] Poprawnie skonfigurowane");
+        logs->addLog(log);
     }
     else
     {
         this->status = "   [ Authorization Database Connection ] Błąd";
+
+        QString log = QString("[ Authorization Database Connection ] Błąd");
+        logs->addLog(log);
     }
 
     emit this->MessageChanged(this->status, 1000);
@@ -114,10 +121,16 @@ void c_ClinicTcpServer::runServer()
         dbContr->SetUpDatabase("Clinic");
         socket->disconnectFromHost();
         this->status = "   [ Clinic Database Connection ] Poprawnie skonfigurowane";
+
+        QString log = QString("[ Clinic Database Connection ] Poprawnie skonfigurowane");
+        logs->addLog(log);
     }
     else
     {
         this->status = "   [ Clinic Database Connection ] Błąd";
+
+        QString log = QString("[ Clinic Database Connection ] Błąd");
+        logs->addLog(log);
     }
 
     emit this->MessageChanged(this->status, 1000);
@@ -133,17 +146,25 @@ void c_ClinicTcpServer::runServer()
     {
         this->status = "[ Server TCP ]   Nie udało się uruchomić";
         emit this->MessageChanged(this->status, 2000);
+
+        QString log = QString("Nie udało się uruchomić serwera.");
+        logs->addLog(log);
     }
      else
     {
         this->status = "[ Server TCP ] Uruchomiony";
         emit this->MessageChanged(this->status, 2000);
+
+        QString log = QString("Uruchomiono serwer TCP/IP");
+        logs->addLog(log);
     }
 
     delete socket;    
 
     emit this->PropertiesChanged();
     emit this->dbContr->PropertiesChanged();
+
+
 }
 
 void c_ClinicTcpServer::stopServer()
@@ -156,6 +177,9 @@ void c_ClinicTcpServer::stopServer()
     emit this->dbContr->PropertiesChanged();
 
     this->status = "[Server TCP] Zatrzymano";
+
+    QString log = QString("[Server TCP] Zatrzymano");
+    logs->addLog(log);
     emit this->MessageChanged(this->status, 2000);
 
 }
@@ -173,7 +197,7 @@ void c_ClinicTcpServer::startServer()
 
 void c_ClinicTcpServer::UpdateProperties(QMap<QString, QVariant> map)
 {
-    this->port = map["port"].toInt();
+    this->port = quint16(map["port"].toInt());
     this->iterfaceName = map["interfaceName"].toString();
 
     if(map["interfaceName"].toString() == "any")
@@ -202,6 +226,10 @@ void c_ClinicTcpServer::incomingConnection(qintptr socketDescriptor)
     c_ClientConnection *connection = new c_ClientConnection(socketDescriptor, this);
 
     connect(connection, SIGNAL(finished()), connection, SLOT(deleteLater()));
+
+//    QString log = QString("incomingConnection(qintptr socketDescriptor) \n"
+//                          "connection->start(); \n");
+//    logs->addLog(log);
 
     connection->start();
 }
@@ -243,9 +271,9 @@ void c_ClinicTcpServer::removeClient(qintptr id)
     emit this->PropertiesChanged();
 }
 
-void c_ClinicTcpServer::removeClient(c_ClientConnection *connection)
-{
-}
+//void c_ClinicTcpServer::removeClient(c_ClientConnection *connection)
+//{
+//}
 
 void c_ClinicTcpServer::removeClients()
 {

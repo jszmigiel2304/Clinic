@@ -10,5 +10,16 @@
         <file>icons/connect.png</file>
         <file>icons/reset.png</file>
         <file>icons/test_connection.png</file>
+        <file>icons/log_in_128_128.png</file>
+        <file>icons/log_out_128_128.png</file>
+        <file>icons/settings_128_128.png</file>
+        <file>icons/employees_256_256.png</file>
+        <file>icons/patient_512_512.png</file>
+        <file>icons/profile_256_256.png</file>
+        <file>icons/tests_256_256.png</file>
+        <file>icons/user_profile_256_256.png</file>
+        <file>icons/visit_256_256.png</file>
+        <file>icons/exit_256_256.png</file>
+        <file>icons/Clinic_Client.ico</file>
     </qresource>
 </RCC>

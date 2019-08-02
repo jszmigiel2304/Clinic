@@ -25,6 +25,7 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
         main.cpp \
+    w_logswindow.cpp \
         w_mainwindow.cpp \
     c_clinictcpserver.cpp \
     w_serverconfigurationdialog.cpp \
@@ -47,6 +48,7 @@ SOURCES += \
     w_hostslistwindow.cpp
 
 HEADERS += \
+    w_logswindow.h \
         w_mainwindow.h \
     c_clinictcpserver.h \
     w_serverconfigurationdialog.h \
@@ -72,6 +74,7 @@ HEADERS += \
     w_hostslistwindow.h
 
 FORMS += \
+    w_logswindow.ui \
         w_mainwindow.ui \
     w_serverconfigurationdialog.ui \
     w_initializedialog.ui \
@@ -92,3 +95,5 @@ DISTFILES += \
 RESOURCES += \
     icons.qrc \
     gifs.qrc
+
+RC_ICONS += Clinic_Serwer.ico

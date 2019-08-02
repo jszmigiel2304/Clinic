@@ -17,7 +17,7 @@ class w_initializeDialog : public QDialog
 public:
     explicit w_initializeDialog(QApplication * app, c_SettingsController * settContr , QWidget *parent = 0);
     ~w_initializeDialog();
-    int checkFiles();
+    bool checkFiles();
 
 
     QApplication * app;

@@ -5,6 +5,7 @@
 #include "c_settingscontroller.h"
 #include "w_initializedialog.h"
 #include "c_mysqldatabasecontroller.h"
+#include "w_logswindow.h"
 
 #include <QApplication>
 #include <QSettings>
@@ -55,16 +56,21 @@ int main(int argc, char *argv[])
         w->shareServerPointer();
         w->shareDbContrPointer();
 
+        w_logsWindow::Instance()->show();
+        QObject::connect(w, SIGNAL(destroyed(QObject *)), w_logsWindow::Instance(), SLOT(close()) );
+
         w->MyShow();
         w->refresh();
 
+
         return a.exec();
 
-        dbContr->deleteLater();
-        server->deleteLater();
-        w->deleteLater();
-    }
+//        dbContr->deleteLater();
+//        server->deleteLater();
+//        w->deleteLater();
+    }        
 
+    return a.exec();
 }
 
 

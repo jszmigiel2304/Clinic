@@ -10,14 +10,14 @@ class c_MyConnectionTester : public QObject
     Q_OBJECT
 public:
     explicit c_MyConnectionTester(QObject * parent = nullptr);
-    explicit c_MyConnectionTester(QString address, int port, QObject * parent = nullptr);
+    explicit c_MyConnectionTester(QString address, quint16 port, QObject * parent = nullptr);
 
 
     QString getAddress() const;
     void setAddress(const QString &value);
 
-    int getPort() const;
-    void setPort(int value);
+    quint16 getPort() const;
+    void setPort(quint16 value);
 
     virtual bool TestConnection(int time = 3000);
 
@@ -26,7 +26,7 @@ public slots:
 
 private:
     QString address;
-    int port;
+    quint16 port;
 };
 
 #endif // C_MYCONNECTIONTESTER_H

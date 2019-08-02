@@ -25,22 +25,28 @@
   <property name="windowTitle">
    <string>Clinic</string>
   </property>
+  <property name="windowIcon">
+   <iconset resource="icons.qrc">
+    <normaloff>:/icons/appIcon.png</normaloff>:/icons/appIcon.png</iconset>
+  </property>
   <widget class="QWidget" name="centralWidget">
    <property name="minimumSize">
     <size>
-     <width>900</width>
+     <width>1000</width>
      <height>600</height>
     </size>
    </property>
    <property name="maximumSize">
     <size>
-     <width>900</width>
+     <width>1000</width>
      <height>600</height>
     </size>
    </property>
   </widget>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
- <resources/>
+ <resources>
+  <include location="icons.qrc"/>
+ </resources>
  <connections/>
 </ui>

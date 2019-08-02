@@ -1,2 +1,0 @@
-INSERT INTO public.user(username, pwd)
-VALUES ('NOT NULL','NOT NULL');

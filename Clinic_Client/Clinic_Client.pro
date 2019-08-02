@@ -24,38 +24,76 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 
 SOURCES += \
+    c_connectiontoservercontroller.cpp \
+    c_loggeduser.cpp \
+    m_loggeduser.cpp \
+    m_module.cpp \
         main.cpp \
+    w_logswindow.cpp \
     w_mainwindow.cpp \
     i_observer.cpp \
     i_watched.cpp \
     c_settingscontroller.cpp \
+    w_modulebuttonbig.cpp \
+    w_modulebuttonlabel.cpp \
+    w_modulebuttonsmall.cpp \
     w_serverconnectiondialog.cpp \
     c_clinicclient.cpp \
     c_versioncontroller.cpp \
     c_apptrayicon.cpp \
     w_loggingdialog.cpp \
-    c_myconnectiontester.cpp
+    c_myconnectiontester.cpp \
+    w_modulesscrollarea.cpp \
+    w_modulebutton.cpp \
+    c_modulescontroller.cpp \
+    c_module.cpp \
+    w_informationslabel.cpp \
+    c_modulebuttonsfactory.cpp \
+    w_toppanel.cpp \
+    w_userpanel.cpp
 
 HEADERS += \
+    c_connectiontoservercontroller.h \
+    c_loggeduser.h \
+    m_loggeduser.h \
+    m_module.h \
+    w_logswindow.h \
     w_mainwindow.h \
     i_observer.h \
     i_watched.h \
     c_settingscontroller.h \
     m_defaultinifile.h \
+    w_modulebuttonbig.h \
+    w_modulebuttonlabel.h \
+    w_modulebuttonsmall.h \
     w_serverconnectiondialog.h \
     c_clinicclient.h \
     m_filespaths.h \
     c_versioncontroller.h \
     c_apptrayicon.h \
     w_loggingdialog.h \
-    c_myconnectiontester.h
+    c_myconnectiontester.h \
+    w_modulesscrollarea.h \
+    w_modulebutton.h \
+    c_modulescontroller.h \
+    c_module.h \
+    c_mystructures.h \
+    w_informationslabel.h \
+    c_modulebuttonsfactory.h \
+    w_toppanel.h \
+    w_userpanel.h
 
 FORMS += \
+    w_logswindow.ui \
     w_mainwindow.ui \
     w_serverconnectiondialog.ui \
     w_loggingdialog.ui
 
-DISTFILES +=
+DISTFILES += \
+    config.ini
 
 RESOURCES += \
     icons.qrc
+
+RC_ICONS += Clinic_Client.ico
+

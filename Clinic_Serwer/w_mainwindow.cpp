@@ -57,7 +57,7 @@ void w_MainWindow::UpdateProperties(QMap<QString, QVariant> map)
     emit this->PropertiesChanged();
 }
 
-void w_MainWindow::showEvent(QShowEvent *event)
+void w_MainWindow::showEvent(QShowEvent *)
 {
 }
 
@@ -241,6 +241,9 @@ void w_MainWindow::closeEvent(QCloseEvent *event)
 
         if(w_HostsListWindow::Instance().getIsShown())
             w_HostsListWindow::Instance().close();
+
+        if(w_logsWindow::Instance() != nullptr)
+            w_logsWindow::Instance()->close();
 
         event->accept();
     }

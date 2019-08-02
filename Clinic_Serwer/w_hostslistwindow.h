@@ -35,8 +35,8 @@ private slots:
     void disconnectHost(QAction * action);
 
 private:
-    explicit w_HostsListWindow(QWidget *parent = 0);
-    explicit w_HostsListWindow(const w_HostsListWindow& ,QWidget *parent = 0);
+    explicit w_HostsListWindow(QWidget *parent = nullptr);
+    explicit w_HostsListWindow(const w_HostsListWindow& ,QWidget *parent = nullptr);
     void closeEvent(QCloseEvent * e);
 
     Ui::w_HostsListWindow *ui;

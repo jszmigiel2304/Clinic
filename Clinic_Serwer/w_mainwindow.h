@@ -24,13 +24,13 @@ class w_MainWindow : public QMainWindow, public i_Watched, public i_Observer
     Q_OBJECT
 
 public:
-    explicit w_MainWindow(QWidget *parent = 0);    
-    explicit w_MainWindow(QMap<QString, QVariant> settings, QWidget *parent = 0);
+    explicit w_MainWindow(QWidget *parent = nullptr);
+    explicit w_MainWindow(QMap<QString, QVariant> settings, QWidget *parent = nullptr);
     ~w_MainWindow();
     QMap<QString, QVariant> ShareProperties(QString sharedData = "all");
     void UpdateProperties(QMap<QString, QVariant> map);
 
-    void showEvent(QShowEvent *event);
+    void showEvent(QShowEvent *);
 
     void shareServerPointer();
     void shareDbContrPointer();

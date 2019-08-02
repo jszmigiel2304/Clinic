@@ -16,7 +16,7 @@
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
-    a.setApplicationName("Clinic - Client");
+    a.setApplicationName("Clinic - Client");    
 
     c_VersionController * versionCtrlr = new c_VersionController(qApp);
 
@@ -48,25 +48,11 @@ int main(int argc, char *argv[])
     }
     delete tempFileList;
 
-    c_SettingsController settingsCtrlr(versionCtrlr->getConfigIniFileName());
-    settingsCtrlr.LoadSettings();
-
     c_AppTrayIcon * appTrayIcon = c_AppTrayIcon::Instance();
-    w_MainWindow * mainWindow = w_MainWindow::Instance();
 
-    mainWindow->AddWatchedObject("appTrayIcon", dynamic_cast<i_Watched *>(appTrayIcon));
-    appTrayIcon->AddWatchedObject("mainWindow", dynamic_cast<i_Watched *>(mainWindow));
-
-    appTrayIcon->setMainWindow(mainWindow);
     appTrayIcon->show();
+    appTrayIcon->run();
 
-    mainWindow->loadSettings(settingsCtrlr.getSettings("window"));
-    mainWindow->show();
-
-    w_LoggingDialog * loggingDialog = new w_LoggingDialog(mainWindow);
-    loggingDialog->setAuthorizationSettings( settingsCtrlr.getSettings("user"), true);
-    loggingDialog->setServerConnectionSettings( settingsCtrlr.getSettings("server"), true );
-    loggingDialog->show();
 
     return a.exec();
 }

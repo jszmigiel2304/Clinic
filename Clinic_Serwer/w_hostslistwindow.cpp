@@ -4,8 +4,8 @@
 
 w_HostsListWindow &w_HostsListWindow::Instance()
 {
-    static w_HostsListWindow * _instance = 0;
-    if ( _instance == 0 ) {
+    static w_HostsListWindow * _instance = nullptr;
+    if ( _instance == nullptr ) {
         _instance = new w_HostsListWindow();
     }
     return *_instance;
@@ -28,7 +28,7 @@ w_HostsListWindow::w_HostsListWindow(const w_HostsListWindow &, QWidget *parent)
 
 }
 
-void w_HostsListWindow::closeEvent(QCloseEvent *e)
+void w_HostsListWindow::closeEvent(QCloseEvent *)
 {
     this->setIsShown(false);
 }

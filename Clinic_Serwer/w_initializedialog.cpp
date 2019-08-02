@@ -27,7 +27,7 @@ w_initializeDialog::~w_initializeDialog()
     delete ui;
 }
 
-int w_initializeDialog::checkFiles()
+bool w_initializeDialog::checkFiles()
 {
     QFile iniFfile(this->settContr->getSettingsFilePath());
 
@@ -67,7 +67,7 @@ int w_initializeDialog::checkFiles()
 
         this->exec();
 
-        return 0;
+        return false;
     } else
     {
         QString cssStyles = QLatin1String(cssFile.readAll());
@@ -76,10 +76,10 @@ int w_initializeDialog::checkFiles()
 
     this->close();
 
-    return 1;
+    return true;
 }
 
-void w_initializeDialog::on_w_initializeDialog_finished(int result)
+void w_initializeDialog::on_w_initializeDialog_finished(int)
 {
 
 }

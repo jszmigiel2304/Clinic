@@ -1,6 +1,0 @@
-INSERT INTO public.employee 
-	(user_id, first_name, last_name, phone_number , mobile_phone_number, employment_date, job, sex, 
-     pesel, birthday_date, residence_address, mailing_address, email, salary, bonus)
-VALUES
-	(, 'NOT NULL', 'NOT NULL', '', '', 'NOT NULL', 'NOT NULL', 'NOT NULL',
-    'NOT NULL', 'NOT NULL', 'NOT NULL', '','NOT NULL', , );

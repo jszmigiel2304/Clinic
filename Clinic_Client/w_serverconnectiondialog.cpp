@@ -36,6 +36,17 @@ w_ServerConnectionDialog::w_ServerConnectionDialog(QWidget *parent) :
 
     connect(ui->f_address, SIGNAL(textChanged(QString)), this, SLOT(settingsChanged(QString)));
     connect(ui->f_port, SIGNAL(textChanged(QString)), this, SLOT(settingsChanged(QString)));
+
+    this->setTabOrder(ui->f_address, ui->f_port);
+    this->setTabOrder(ui->f_port, okButton);
+    this->setTabOrder(okButton, applyButton);
+    this->setTabOrder(applyButton, ui->b_refresh);
+    this->setTabOrder(ui->b_refresh, ui->b_test);
+    this->setTabOrder(ui->b_test, ui->f_address);
+
+    this->addStyleSheets();
+
+
 }
 
 w_ServerConnectionDialog::~w_ServerConnectionDialog()
@@ -50,7 +61,53 @@ void w_ServerConnectionDialog::update()
     ui->f_address->setText(properties["address"].toString());
     ui->f_port->setText(properties["port"].toString());
 
+
     this->isChanged = false;
+}
+
+void w_ServerConnectionDialog::addStyleSheets()
+{
+    ui->buttonBox->buttons()[0]->setStyleSheet("QPushButton {"
+                                                              "background-color: rgba(255, 255, 255, 0);"
+                                                                "width: 80px;"
+                                                                "height: 25px;"
+                                                              "border-style: solid;"
+                                                              "border-width: 1px;"
+                                                              "border-radius: 3px;"
+                                                              "font: 75 8pt \"Tahoma\";"
+                                                              "color: rgb(0, 0, 0);"
+                                                              "border-color: rgba(0, 0, 0, 255);"
+                                                              "}"
+                                                              "QPushButton:hover {"
+                                                              "background-color: rgba(0, 0, 0, 10);"
+                                                              "}"
+                                                              "QPushButton:pressed {"
+                                                              "background-color: rgba(0, 0, 0, 20);"
+                                                              "}"
+                                               "QPushButton:disabled {"
+                                               "border-color: rgba(0, 0, 0, 0);"
+                                               "}");
+
+    ui->buttonBox->buttons()[1]->setStyleSheet("QPushButton {"
+                                                              "background-color: rgba(255, 255, 255, 0);"
+                                               "width: 80px;"
+                                               "height: 25px;"
+                                                              "border-style: solid;"
+                                                              "border-width: 1px;"
+                                                              "border-radius: 3px;"
+                                                              "font: 75 8pt \"Tahoma\";"
+                                                              "color: rgb(0, 0, 0);"
+                                                              "border-color: rgba(0, 0, 0, 255);"
+                                                              "}"
+                                                              "QPushButton:hover {"
+                                                              "background-color: rgba(0, 0, 0, 10);"
+                                                              "}"
+                                                              "QPushButton:pressed {"
+                                                              "background-color: rgba(0, 0, 0, 20);"
+                                                              "}"
+                                               "QPushButton:disabled {"
+                                               "border-color: rgba(0, 0, 0, 0);"
+                                               "}");
 }
 
 void w_ServerConnectionDialog::settingsChanged(bool)
@@ -74,7 +131,7 @@ void w_ServerConnectionDialog::validateAddress()
 
     if(ip4RegExp.exactMatch(address))
     {
-        ui->f_address->setStyleSheet("color: green;");
+        ui->f_address->setStyleSheet("");
     }
     else
     {
@@ -88,7 +145,7 @@ void w_ServerConnectionDialog::validatePort()
 
     if( port.toInt() >= 1024 && port.toInt() <= 49151   )
     {
-        ui->f_port->setStyleSheet("color: green;");
+        ui->f_port->setStyleSheet("");
     }
     else
     {
@@ -109,6 +166,9 @@ void w_ServerConnectionDialog::resetButtonPressed()
     this->isChanged = false;
     (ui->buttonBox->buttons()[1])->setEnabled(false);
     ui->b_refresh->setEnabled(false);
+
+    this->validateAddress();
+    this->validatePort();
 }
 
 void w_ServerConnectionDialog::applyButtonPressed()

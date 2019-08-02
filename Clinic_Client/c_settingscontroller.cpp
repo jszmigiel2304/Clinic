@@ -2,7 +2,7 @@
 
 c_SettingsController::c_SettingsController()
 {
-
+    this->settingsFilePath = QString("%1/config.ini").arg(QCoreApplication::applicationDirPath());
 }
 
 c_SettingsController::c_SettingsController(QString settingsFilePath)

@@ -11,6 +11,7 @@
 #include <QRadioButton>
 #include <QPushButton>
 #include <QMessageBox>
+#include <QIntValidator>
 
 namespace Ui {
 class w_serverConfigurationDialog;

@@ -18,6 +18,10 @@
         <file>icons/if_multimedia-37_809491 (1).png</file>
         <file>icons/if_refresh27_216529.png</file>
         <file>icons/if_cross_48_10298.png</file>
+        <file>icons/Clinic_Serwer.ico</file>
     </qresource>
     <qresource prefix="/gifs"/>
+    <qresource prefix="/">
+        <file>icons/Clinic_Serwer.ico</file>
+    </qresource>
 </RCC>

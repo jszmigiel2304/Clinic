@@ -7,7 +7,7 @@ c_MySqlDatabaseController::c_MySqlDatabaseController()
 
 }
 
-c_MySqlDatabaseController::c_MySqlDatabaseController(QMap<QString, QVariant> settings)
+c_MySqlDatabaseController::c_MySqlDatabaseController(QMap<QString, QVariant>)
 {
 
 }
@@ -16,7 +16,7 @@ c_MySqlDatabaseController::c_MySqlDatabaseController(QMap<QString, QVariant> aut
 {
     this->authDriver = authDbSettings["driver"].toString();
     this->authDbHostName = authDbSettings["address"].toString();
-    this->authDbPort = authDbSettings["port"].toInt();
+    this->authDbPort = quint16(authDbSettings["port"].toInt());
     this->authDbName = authDbSettings["database_name"].toString();
     this->authDbUserName = authDbSettings["username"].toString();
     this->authPassword = authDbSettings["password"].toString();
@@ -24,7 +24,7 @@ c_MySqlDatabaseController::c_MySqlDatabaseController(QMap<QString, QVariant> aut
 
     this->clinicDriver = clinicDbSettings["driver"].toString();
     this->clinicDbHostName = clinicDbSettings["address"].toString();
-    this->clinicDbPort = clinicDbSettings["port"].toInt();
+    this->clinicDbPort = quint16(clinicDbSettings["port"].toInt());
     this->clinicDbName = clinicDbSettings["database_name"].toString();
     this->clinicDbUserName = clinicDbSettings["username"].toString();
     this->clinicPassword = clinicDbSettings["password"].toString();
@@ -69,14 +69,14 @@ void c_MySqlDatabaseController::UpdateProperties(QMap<QString, QVariant> map)
     this->authDriver = map["authDriver"].toString();
     this->authDbHostName = map["authAddress"].toString();
     this->authDbName = map["authDbName"].toString();
-    this->authDbPort = map["authPort"].toInt();
+    this->authDbPort = quint16(map["authPort"].toInt());
     this->authDbUserName = map["authUserName"].toString();
     this->authPassword = map["authPassword"].toString();
 
     this->clinicDriver = map["clinicDriver"].toString();
     this->clinicDbHostName = map["clinicAddress"].toString();
     this->clinicDbName = map["clinicDbName"].toString();
-    this->clinicDbPort = map["clinicPort"].toInt();
+    this->clinicDbPort = quint16(map["clinicPort"].toInt());
     this->clinicDbUserName = map["clinicUserName"].toString();
     this->clinicPassword = map["clinicPassword"].toString();
 
@@ -124,7 +124,7 @@ void c_MySqlDatabaseController::SetUpDatabase(QString name)
     QSqlDatabase::database(name).setPassword( ( (name == "Clinic") ? this->clinicPassword : this->authPassword  ) );
 }
 
-void c_MySqlDatabaseController::SetUpDatabase(QString name, QString hostName, int port, QString databaseName, QString userName, QString password)
+void c_MySqlDatabaseController::SetUpDatabase(QString name, QString hostName, quint16 port, QString databaseName, QString userName, QString password)
 {
     QSqlDatabase::database(name).setHostName(hostName);
     QSqlDatabase::database(name).setPort(port);
@@ -152,7 +152,7 @@ void c_MySqlDatabaseController::setAuthDbHostName(const QString &value)
     authDbHostName = value;
 }
 
-void c_MySqlDatabaseController::setAuthDbPort(int value)
+void c_MySqlDatabaseController::setAuthDbPort(quint16 value)
 {
     authDbPort = value;
 }
@@ -162,7 +162,7 @@ QString c_MySqlDatabaseController::getAuthDbHostName() const
     return authDbHostName;
 }
 
-int c_MySqlDatabaseController::getAuthDbPort() const
+quint16 c_MySqlDatabaseController::getAuthDbPort() const
 {
     return authDbPort;
 }
@@ -182,12 +182,12 @@ void c_MySqlDatabaseController::setClinicDbHostName(const QString &value)
     clinicDbHostName = value;
 }
 
-int c_MySqlDatabaseController::getClinicDbPort() const
+quint16 c_MySqlDatabaseController::getClinicDbPort() const
 {
     return clinicDbPort;
 }
 
-void c_MySqlDatabaseController::setClinicDbPort(int value)
+void c_MySqlDatabaseController::setClinicDbPort(quint16 value)
 {
     clinicDbPort = value;
 }

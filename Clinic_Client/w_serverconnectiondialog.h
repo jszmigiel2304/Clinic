@@ -12,6 +12,7 @@
 #include <QApplication>
 #include <QHostAddress>
 #include <QTimer>
+#include <QIntValidator>
 
 namespace Ui {
 class w_ServerConnectionDialog;
@@ -20,15 +21,18 @@ class w_ServerConnectionDialog;
 class w_ServerConnectionDialog : public QDialog, public i_Observer
 {
     Q_OBJECT
-
 public:
-    explicit w_ServerConnectionDialog(QWidget *parent = 0);
+    explicit w_ServerConnectionDialog(QWidget *parent = nullptr);
     ~w_ServerConnectionDialog();
     void update();
 
 private:
     Ui::w_ServerConnectionDialog *ui;
     bool isChanged;
+    QString address;
+    quint16 port;
+
+    void addStyleSheets();
 
 
 private slots:

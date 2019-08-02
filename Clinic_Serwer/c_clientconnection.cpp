@@ -6,6 +6,7 @@ c_ClientConnection::c_ClientConnection(qintptr ID, QObject *parent) :
     QThread(parent)
 {
     this->socketDescriptor = ID;
+    this->logs = w_logsWindow::Instance();
 }
 
 c_ClientConnection::~c_ClientConnection()
@@ -20,6 +21,11 @@ void c_ClientConnection::run()
     if(!this->socket->setSocketDescriptor(this->socketDescriptor))
     {
         emit error(this->socket->error());
+
+        QString log = QString("c_ClientConnection::run() \n"
+                              "error(this->socket->error())");
+        w_logsWindow::Instance()->addLog(log);
+
         return;
     }
 
@@ -27,7 +33,14 @@ void c_ClientConnection::run()
     connect(socket, SIGNAL(readyRead()), this, SLOT(readyRead()), Qt::DirectConnection);
     connect(socket,SIGNAL(disconnected()), this, SLOT(disconnected()), Qt::DirectConnection);
 
+
     (dynamic_cast<c_ClinicTcpServer *>(parent()))->newClient(this);
+
+    socket->open(QIODevice::ReadWrite);
+
+    QString log = QString("c_ClientConnection::run() \n"
+                          "OK");
+    w_logsWindow::Instance()->addLog(log);
 
     exec();
 
@@ -35,13 +48,22 @@ void c_ClientConnection::run()
 
 void c_ClientConnection::readyRead()
 {
-    QByteArray Data = QString("Connected").toUtf8();
+    QString log("Start read");
+    logs->addLog(log);
 
-    socket->write(Data);
+    QTextStream ts( socket );
+
+    QString data = ts.readAll();
+    logs->addLog(data);
+
+    ts << "Odpowiedz zwrotna \n" << "Odebrano: \n" << data;
 }
 
 void c_ClientConnection::disconnected()
 {
+//    QString log = QString("c_ClientConnection::disconnected() \n");
+//    w_logsWindow::Instance()->addLog(log);
+
     (dynamic_cast<c_ClinicTcpServer *>(parent()))->removeClient(this->socketDescriptor);
     socket->deleteLater();
     exit(0);

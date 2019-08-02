@@ -6,7 +6,7 @@ c_MyConnectionTester::c_MyConnectionTester(QObject *parent)  : QObject(parent)
 
 }
 
-c_MyConnectionTester::c_MyConnectionTester(QString address, int port, QObject *parent)  : QObject(parent)
+c_MyConnectionTester::c_MyConnectionTester(QString address, quint16 port, QObject *parent)  : QObject(parent)
 {
     this->address = address;
     this->port = port;
@@ -22,12 +22,12 @@ void c_MyConnectionTester::setAddress(const QString &value)
     address = value;
 }
 
-int c_MyConnectionTester::getPort() const
+quint16 c_MyConnectionTester::getPort() const
 {
     return port;
 }
 
-void c_MyConnectionTester::setPort(int value)
+void c_MyConnectionTester::setPort(quint16 value)
 {
     port = value;
 }

@@ -24,7 +24,7 @@ public:
     void RemoveDatabase(QString name);
     void RemoveAllDatabases();
     void SetUpDatabase(QString name);
-    void SetUpDatabase(QString name, QString hostName, int port, QString databaseName, QString userName, QString password);
+    void SetUpDatabase(QString name, QString hostName, quint16 port, QString databaseName, QString userName, QString password);
     void SetUpDatabase(QString name, QMap<QString, QVariant> settings);
 
     QString getAuthDbName() const;
@@ -33,14 +33,14 @@ public:
     QString getAuthDbHostName() const;
     void setAuthDbHostName(const QString &value);
 
-    int getAuthDbPort() const;
-    void setAuthDbPort(int value);
+    quint16 getAuthDbPort() const;
+    void setAuthDbPort(quint16 value);
 
     QString getClinicDbHostName() const;
     void setClinicDbHostName(const QString &value);
 
-    int getClinicDbPort() const;
-    void setClinicDbPort(int value);
+    quint16 getClinicDbPort() const;
+    void setClinicDbPort(quint16 value);
 
     QString getClinicDbName() const;
     void setClinicDbName(const QString &value);
@@ -71,14 +71,14 @@ private:
 
     QString authDriver;
     QString authDbHostName;
-    int authDbPort;
+    quint16 authDbPort;
     QString authDbName;
     QString authDbUserName;
     QString authPassword;
 
     QString clinicDriver;
     QString clinicDbHostName;
-    int clinicDbPort;
+    quint16 clinicDbPort;
     QString clinicDbName;
     QString clinicDbUserName;
     QString clinicPassword;

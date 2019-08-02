@@ -1,10 +1,14 @@
 #ifndef C_CLIENTCONNECTION_H
 #define C_CLIENTCONNECTION_H
 
+#include "w_logswindow.h"
 
 #include <QObject>
 #include <QThread>
 #include <QSslSocket>
+#include <QTextStream>
+#include <QDataStream>
+#include <QMessageBox>
 
 
 class c_ClientConnection : public QThread
@@ -12,7 +16,7 @@ class c_ClientConnection : public QThread
     Q_OBJECT
 
 public:
-    explicit c_ClientConnection(qintptr ID, QObject *parent = 0);
+    explicit c_ClientConnection(qintptr ID, QObject *parent = nullptr);
     ~c_ClientConnection();
 
     void run();
@@ -34,7 +38,9 @@ public slots:
 
 private:
     QSslSocket *socket;
-    qintptr socketDescriptor;
+    qintptr socketDescriptor;    
+
+    w_logsWindow *logs;
 };
 
 #endif // C_CLIENTCONNECTION_H

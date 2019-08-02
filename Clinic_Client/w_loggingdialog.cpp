@@ -7,6 +7,10 @@ w_LoggingDialog::w_LoggingDialog(QWidget *parent) :
 {
     ui->setupUi(this);
 
+    this->addStyleSheets();
+
+
+
     this->setWindowTitle(qApp->applicationName());
 
     ui->w_serverInfoArea->hide();
@@ -15,6 +19,33 @@ w_LoggingDialog::w_LoggingDialog(QWidget *parent) :
 
     connect(ui->f_userName, SIGNAL(editingFinished()), this, SLOT(validateUserName()));
     connect(ui->f_password, SIGNAL(editingFinished()), this, SLOT(validateUserPassword()));
+}
+
+void w_LoggingDialog::addStyleSheets()
+{
+    ui->b_logIn->setStyleSheet("QPushButton {"
+                        "background-color: rgba(255, 255, 255, 0);"
+                        "border-style: solid;"
+                        "border-width: 1px;"
+                        "font: 75 12pt \"Tahoma\";"
+                        "color: rgb(0, 0, 0);"
+                        "border-color: rgba(0, 0, 0, 255);"
+                        "}"
+                        "QPushButton:hover {"
+                        "background-color: rgba(0, 0, 0, 10);"
+                        "}"
+                        "QPushButton:pressed {"
+                        "background-color: rgba(0, 0, 0, 20);"
+                        "}");
+}
+
+w_LoggingDialog *w_LoggingDialog::Instance()
+{
+    static w_LoggingDialog * instance = nullptr;
+    if ( instance == nullptr ) {
+        instance = new w_LoggingDialog();
+    }
+    return instance;
 }
 
 w_LoggingDialog::~w_LoggingDialog()
@@ -31,10 +62,19 @@ void w_LoggingDialog::setServerConnectionSettings(QMap<QString, QVariant> settin
         this->refresh();
 }
 
-void w_LoggingDialog::setAuthorizationSettings(QMap<QString, QVariant> settings, bool refresh)
+void w_LoggingDialog::setAuthorizationSettings(QAuthenticator authorizationData, bool refresh)
 {
-    userName = settings["name"].toString();
-    userPassword = settings["password"].toString();
+    userName = authorizationData.user();
+    userPassword = authorizationData.password();
+
+    if(refresh)
+        this->refresh();
+}
+
+void w_LoggingDialog::setWindowSettings(QMap<QString, QVariant> settings, bool refresh)
+{
+    this->minimizeToTrayOnStart = settings["minimize_to_tray_on_start"].toBool();
+    this->minimizeToTrayOnClose = settings["minimize_to_tray_on_close"].toBool();
 
     if(refresh)
         this->refresh();
@@ -106,6 +146,21 @@ void w_LoggingDialog::refresh()
     ui->l_Port->setText( QString("%1").arg(this->serverPort) );
 }
 
+void w_LoggingDialog::closeEvent(QCloseEvent *event)
+{
+    if(this->minimizeToTrayOnClose)
+    {
+        this->hide();
+        emit this->myStateChanged(this->windowState(), false);
+        event->ignore();
+    }
+    else
+    {
+        emit this->myStateChanged(this->windowState(), true);
+        event->accept();
+    }
+}
+
 void w_LoggingDialog::on_b_configureButton_clicked()
 {
     w_ServerConnectionDialog * newDialog = new w_ServerConnectionDialog(this);
@@ -142,4 +197,9 @@ void w_LoggingDialog::validateUserPassword()
     {
         ui->f_password->setStyleSheet("border: 2px solid red;");
     }
+}
+
+void w_LoggingDialog::on_b_logIn_clicked()
+{
+
 }
