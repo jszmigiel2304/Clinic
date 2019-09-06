@@ -24,6 +24,7 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 
 SOURCES += \
+    c_myfiles.cpp \
         main.cpp \
     w_logswindow.cpp \
         w_mainwindow.cpp \
@@ -48,6 +49,7 @@ SOURCES += \
     w_hostslistwindow.cpp
 
 HEADERS += \
+    c_myfiles.h \
     w_logswindow.h \
         w_mainwindow.h \
     c_clinictcpserver.h \
@@ -55,7 +57,6 @@ HEADERS += \
     i_observer.h \
     i_watched.h \
     c_settingscontroller.h \
-    m_fileMacros.h \
     w_initializedialog.h \
     m_defaultinifile.h \
     w_interfaceinformationswidget.h \

@@ -1,9 +1,9 @@
 #include "w_mainwindow.h"
 #include "c_settingscontroller.h"
-#include "m_filespaths.h"
 #include "c_versioncontroller.h"
 #include "c_apptrayicon.h"
 #include "w_loggingdialog.h"
+#include "c_myfiles.h"
 
 #include <QApplication>
 #include <QSettings>
@@ -13,10 +13,17 @@
 #include <QMessageBox>
 #include <QSystemTrayIcon>
 
+
 int main(int argc, char *argv[])
 {
+    QCoreApplication::addLibraryPath("./");
+
     QApplication a(argc, argv);
     a.setApplicationName("Clinic - Client");    
+
+    c_myFiles * files = c_myFiles::Instance();
+
+    files->setConfigFilePath(a.applicationDirPath() + "/config.ini");
 
     c_VersionController * versionCtrlr = new c_VersionController(qApp);
 

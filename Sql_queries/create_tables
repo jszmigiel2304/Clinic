@@ -1,0 +1,34 @@
+CREATE TABLE users (
+	id SERIAL PRIMARY KEY,
+	name VARCHAR(16) NOT NULL UNIQUE,
+	password VARCHAR(256) NOT NULL,
+	email VARCHAR(64) NOT NULL,
+	verified BOOLEAN DEFAULT(false),
+	blocked BOOLEAN DEFAULT(false),
+	create_date TIMESTAMP,
+	verify_date TIMESTAMP,
+	block_date TIMESTAMP,
+	photo BYTEA
+	);
+		
+	
+	CREATE TABLE sessions (
+		id UUID PRIMARY KEY NOT NULL UNIQUE,
+		id_user BIGINT NOT NULL,
+		begin_time TIMESTAMP,
+		end_time TIMESTAMP,
+		ip_address CIDR NOT NULL,
+		mac_address MACADDR NOT NULL,
+		activity BYTEA,
+		FOREIGN KEY (id_user) REFERENCES users (id) ON DELETE CASCADE
+	);
+	
+	
+	CREATE TABLE logs (
+		id SERIAL PRIMARY KEY NOT NULL UNIQUE,
+		id_user BIGINT NOT NULL,
+		log_time TIMESTAMP,
+		ip_address CIDR,
+		status INT,
+		FOREIGN KEY (id_user) REFERENCES users (id) ON DELETE CASCADE
+	);

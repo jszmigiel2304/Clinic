@@ -100,7 +100,7 @@ void w_DatabaseConnectionsConfigurationDialog::applyButtonPressed()
     this->watchedObjectsList["databaseController"]->UpdateProperties(mapAuth.unite(mapClinic));
 
 
-    c_SettingsController settCtrl(INI_FILE);
+    c_SettingsController settCtrl(c_myFiles::Instance()->getConfigFilePath());
 
     QMap<QString, QVariant> map;
     map.insert( "driver", mapAuth["authDriver"].toString() );

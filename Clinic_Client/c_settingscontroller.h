@@ -2,7 +2,6 @@
 #define C_SETTINGSCONTROLLER_H
 
 #include "m_defaultinifile.h"
-#include "m_filespaths.h"
 
 #include <QString>
 #include <QFile>

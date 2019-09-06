@@ -29,7 +29,7 @@ w_initializeDialog::~w_initializeDialog()
 
 bool w_initializeDialog::checkFiles()
 {
-    QFile iniFfile(this->settContr->getSettingsFilePath());
+    QFile iniFfile(this->configFile);
 
     if(!iniFfile.exists())
     {
@@ -48,7 +48,7 @@ bool w_initializeDialog::checkFiles()
         this->settContr->LoadSettings();
     }
 
-    QFile cssFile(CSS_STYLES_FILE);
+    QFile cssFile(this->cssFile);
 
     if(!cssFile.open(QFile::ReadOnly))
     {
@@ -82,4 +82,24 @@ bool w_initializeDialog::checkFiles()
 void w_initializeDialog::on_w_initializeDialog_finished(int)
 {
 
+}
+
+QString w_initializeDialog::getConfigFile() const
+{
+    return configFile;
+}
+
+void w_initializeDialog::setConfigFile(const QString &value)
+{
+    configFile = value;
+}
+
+QString w_initializeDialog::getCssFile() const
+{
+    return cssFile;
+}
+
+void w_initializeDialog::setCssFile(const QString &value)
+{
+    cssFile = value;
 }

@@ -111,7 +111,7 @@ void w_windowConfigurationDialog::applyButtonPressed()
 
     this->watchedObjectsList["appWindow"]->UpdateProperties(map);
 
-    c_SettingsController settCtrl(INI_FILE);
+    c_SettingsController settCtrl(c_myFiles::Instance()->getConfigFilePath());
     settCtrl.SaveToFile("window", map);
 
     this->isChanged = false;

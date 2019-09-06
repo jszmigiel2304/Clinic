@@ -3,6 +3,7 @@
 
 #include "i_observer.h"
 #include "c_settingscontroller.h"
+#include "c_myfiles.h"
 
 #include <QDialog>
 #include <QPushButton>

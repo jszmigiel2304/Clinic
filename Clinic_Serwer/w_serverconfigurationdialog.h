@@ -3,7 +3,7 @@
 
 #include "i_observer.h"
 #include "c_settingscontroller.h"
-#include "m_fileMacros.h"
+#include "c_myfiles.h"
 
 #include <QDialog>
 #include <QRadioButton>
@@ -22,7 +22,7 @@ class w_serverConfigurationDialog : public QDialog, public i_Observer
     Q_OBJECT
 
 public:
-    explicit w_serverConfigurationDialog(QWidget *parent = 0);
+    explicit w_serverConfigurationDialog(QWidget *parent = nullptr);
     ~w_serverConfigurationDialog();
     QMap<QString, QVariant> getServerProperties();
     void update();

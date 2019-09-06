@@ -3,9 +3,9 @@
 
 #include "i_observer.h"
 #include "c_settingscontroller.h"
-#include "m_filespaths.h"
 #include "w_loggingdialog.h"
 #include "c_myconnectiontester.h"
+#include "c_myfiles.h"
 
 #include <QDialog>
 #include <QPushButton>

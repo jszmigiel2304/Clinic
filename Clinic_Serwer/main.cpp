@@ -1,11 +1,11 @@
 #include "w_mainwindow.h"
 #include "c_clientconnection.h"
 #include "c_clinictcpserver.h"
-#include "m_fileMacros.h"
 #include "c_settingscontroller.h"
 #include "w_initializedialog.h"
 #include "c_mysqldatabasecontroller.h"
 #include "w_logswindow.h"
+#include "c_myfiles.h"
 
 #include <QApplication>
 #include <QSettings>
@@ -17,15 +17,28 @@
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);    
-    c_SettingsController settContr(INI_FILE);
+
+    c_myFiles * files = c_myFiles::Instance();
+
+//    QString str = a.applicationDirPath();
+//    QString strini = str + "/config.ini";
+//    QString strcss = str + "/styles.css";
+
+    files->setCssFilePath(a.applicationDirPath() + "/styles.css");
+    files->setConfigFilePath(a.applicationDirPath() + "/config.ini");
+
+    c_SettingsController settContr(files->getConfigFilePath());
 
     a.setApplicationName("Clinic - Server");
 
     w_initializeDialog * init = new w_initializeDialog(&a, &settContr);
+    init->setCssFile(files->getCssFilePath());
+    init->setConfigFile(files->getConfigFilePath());
     init->show();
 
     if(!init->checkFiles())
     {
+        files->deleteLater();
         a.exit(0);
     }
     else

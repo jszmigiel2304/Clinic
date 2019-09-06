@@ -15,7 +15,7 @@ class w_runServerDialog : public QDialog, public i_Observer
     Q_OBJECT
 
 public:
-    explicit w_runServerDialog(QWidget *parent = 0);
+    explicit w_runServerDialog(QWidget *parent = nullptr);
     ~w_runServerDialog();
 
 public slots:

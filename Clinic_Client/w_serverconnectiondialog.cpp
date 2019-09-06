@@ -183,7 +183,7 @@ void w_ServerConnectionDialog::applyButtonPressed()
         this->watchedObjectsList["loggingDialog"]->UpdateProperties(properties);
         (dynamic_cast<w_LoggingDialog *>(this->watchedObjectsList["loggingDialog"]))->refresh();
 
-        c_SettingsController settCtrl(INI_FILE);
+        c_SettingsController settCtrl(c_myFiles::Instance()->getConfigFilePath());
 
         settCtrl.SaveToFile("server", properties);
 
@@ -255,7 +255,7 @@ bool w_ServerConnectionDialog::portIsValid()
 
 void w_ServerConnectionDialog::on_b_test_clicked()
 {
-    c_MyConnectionTester * tester = new c_MyConnectionTester(ui->f_address->text(), ui->f_port->text().toInt(), this);
+    c_MyConnectionTester * tester = new c_MyConnectionTester(ui->f_address->text(), quint16(ui->f_port->text().toInt()), this);
 
     ui->b_refresh->setEnabled(false);
 

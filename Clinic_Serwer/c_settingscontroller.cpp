@@ -34,7 +34,7 @@ void c_SettingsController::LoadSettings()
 
 void c_SettingsController::CreateIniFile()
 {
-    QSettings settings(INI_FILE, QSettings::IniFormat);
+    QSettings settings("/config.ini", QSettings::IniFormat);
 
     settings.beginGroup("application");
     settings.endGroup();
@@ -86,7 +86,8 @@ QMap<QString, QVariant> c_SettingsController::getSettings(QString groupName) con
 
 void c_SettingsController::SaveToFile(QString groupName, QMap<QString, QVariant> map)
 {
-    QSettings settings(INI_FILE, QSettings::IniFormat);
+
+    QSettings settings(this->settingsFilePath, QSettings::IniFormat);
 
     settings.beginGroup(groupName);
     foreach (QString item, map.keys()) {

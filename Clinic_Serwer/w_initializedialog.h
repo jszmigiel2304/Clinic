@@ -2,7 +2,6 @@
 #define W_INITIALIZEDIALOG_H
 
 #include "c_settingscontroller.h"
-#include "m_fileMacros.h"
 
 #include <QDialog>
 
@@ -23,11 +22,20 @@ public:
     QApplication * app;
     c_SettingsController * settContr;
 
+    QString getCssFile() const;
+    void setCssFile(const QString &value);
+
+    QString getConfigFile() const;
+    void setConfigFile(const QString &value);
+
 private slots:
     void on_w_initializeDialog_finished(int result);
 
 private:
     Ui::w_initializeDialog *ui;
+
+    QString cssFile;
+    QString configFile;
 
 };
 

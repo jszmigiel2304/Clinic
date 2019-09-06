@@ -160,7 +160,7 @@ void w_serverConfigurationDialog::applyButtonPressed()
 
     this->watchedObjectsList["server"]->UpdateProperties(map);
 
-    c_SettingsController settCtrl(INI_FILE);
+    c_SettingsController settCtrl(c_myFiles::Instance()->getConfigFilePath());
     settCtrl.SaveToFile("server", map);
 
     this->isChanged = false;

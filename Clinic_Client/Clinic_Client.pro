@@ -26,6 +26,7 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += \
     c_connectiontoservercontroller.cpp \
     c_loggeduser.cpp \
+    c_myfiles.cpp \
     m_loggeduser.cpp \
     m_module.cpp \
         main.cpp \
@@ -55,6 +56,7 @@ SOURCES += \
 HEADERS += \
     c_connectiontoservercontroller.h \
     c_loggeduser.h \
+    c_myfiles.h \
     m_loggeduser.h \
     m_module.h \
     w_logswindow.h \
@@ -68,7 +70,6 @@ HEADERS += \
     w_modulebuttonsmall.h \
     w_serverconnectiondialog.h \
     c_clinicclient.h \
-    m_filespaths.h \
     c_versioncontroller.h \
     c_apptrayicon.h \
     w_loggingdialog.h \

@@ -1,7 +1,6 @@
 #ifndef C_SETTINGSCONTROLLER_H
 #define C_SETTINGSCONTROLLER_H
 
-#include "m_fileMacros.h"
 #include "m_defaultinifile.h"
 
 #include <QString>

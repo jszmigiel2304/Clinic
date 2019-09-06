@@ -4,6 +4,7 @@
 #include "i_observer.h"
 #include "c_settingscontroller.h"
 #include "m_databasedrivers.h"
+#include "c_myfiles.h"
 
 #include <QPushButton>
 #include <QDialog>
