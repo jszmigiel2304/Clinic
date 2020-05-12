@@ -8,6 +8,9 @@
 #include "c_clientconnection.h"
 #include "c_myconnection.h"
 #include "w_logswindow.h"
+#include "c_myaction.h"
+#include "c_myparser.h"
+#include "c_actionexecutive.h"
 
 #include <QTcpServer>
 #include <QNetworkInterface>
@@ -39,6 +42,14 @@ public:
 
     QList<c_ClientConnection *> getHostsList() const;
 
+    c_myParser *getParser() const;
+    void setParser(c_myParser *value);
+
+    c_actionExecutive *getExecutive() const;
+    void setExecutive(c_actionExecutive *value);
+
+    c_MySqlDatabaseController *getDbContr() const;
+
 public slots:
     void UpdateProperties(QMap<QString, QVariant> map);
 
@@ -57,6 +68,10 @@ private:
     QList<c_ClientConnection *> hostsList;
 
     w_logsWindow * logs;
+
+    c_myParser *parser;
+
+    c_actionExecutive *executive;
 
 protected:
     void incomingConnection(qintptr socketDescriptor);

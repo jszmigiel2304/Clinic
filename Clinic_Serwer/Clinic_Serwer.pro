@@ -24,7 +24,10 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 
 SOURCES += \
+    c_actionexecutive.cpp \
+    c_myaction.cpp \
     c_myfiles.cpp \
+    c_myparser.cpp \
         main.cpp \
     w_logswindow.cpp \
         w_mainwindow.cpp \
@@ -49,7 +52,10 @@ SOURCES += \
     w_hostslistwindow.cpp
 
 HEADERS += \
+    c_actionexecutive.h \
+    c_myaction.h \
     c_myfiles.h \
+    c_myparser.h \
     w_logswindow.h \
         w_mainwindow.h \
     c_clinictcpserver.h \

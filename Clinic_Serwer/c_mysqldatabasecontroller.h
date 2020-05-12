@@ -8,6 +8,7 @@
 #include <QSql>
 #include <QSqlDatabase>
 #include <QMap>
+#include <QSqlQuery>
 
 class c_MySqlDatabaseController : public QObject, public i_Watched
 {
@@ -26,6 +27,8 @@ public:
     void SetUpDatabase(QString name);
     void SetUpDatabase(QString name, QString hostName, quint16 port, QString databaseName, QString userName, QString password);
     void SetUpDatabase(QString name, QMap<QString, QVariant> settings);
+
+    QSqlQuery exe(QSqlQuery query, QString destDatabase);
 
     QString getAuthDbName() const;
     void setAuthDbName(const QString &value);
@@ -62,6 +65,9 @@ public:
 
     QString getClinicPassword() const;
     void setClinicPassword(const QString &value);
+
+    QMap<QString, QSqlDatabase> getDatabases() const;
+    void setDatabases(const QMap<QString, QSqlDatabase> &value);
 
 signals:
     void PropertiesChanged();

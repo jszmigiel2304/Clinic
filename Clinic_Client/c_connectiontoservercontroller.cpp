@@ -34,13 +34,33 @@ void c_connectionToServerController::runSocket()
 
     socket->connectToHost( getHost(), getPort() );
     socket->open(QIODevice::ReadWrite);
-    sendText("hello1 \n");
-    sendText("hello2 \n");
-    sendText("hello3 \n");
-    sendText("hello4 \n");
+
+//    sendText("hello1 \n");
+//    sendText("hello2 \n");
+//    sendText("hello3 \n");
+//    sendText("hello4 \n");
     sendText("hello5 \n");
     sendText("hello6 \n");
     sendText("hello7 \n");
+
+    QString pwd = "kuba8888";
+    QCryptographicHash hasher(QCryptographicHash::Md5);
+    QString seed("klucz" + pwd);
+    hasher.addData(seed.toLocal8Bit(), seed.length());
+
+    QJsonDocument json;
+    QJsonObject jobj;
+    jobj["type"] = 0;
+    jobj["name"] = "jszmigiel2304";
+    jobj["password"] = QString(hasher.result());
+    json.setObject(jobj);
+
+    w_logsWindow::Instance()->addLog(QString::number(jobj["type"].toInt()));
+    w_logsWindow::Instance()->addLog(jobj["name"].toString());
+    w_logsWindow::Instance()->addLog(jobj["password"].toString());
+
+    QByteArray data = json.toBinaryData();
+    sendData(json.toBinaryData());
 }
 
 c_connectionToServerController::c_connectionToServerController(QObject *parent) : QObject(parent)

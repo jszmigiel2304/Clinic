@@ -46,6 +46,11 @@ void c_ClientConnection::run()
 
 }
 
+void c_ClientConnection::reply(QByteArray answer)
+{
+    this->socket->write(answer);
+}
+
 void c_ClientConnection::readyRead()
 {
     QString log("Start read");
@@ -54,9 +59,13 @@ void c_ClientConnection::readyRead()
     QTextStream ts( socket );
 
     QString data = ts.readAll();
-    logs->addLog(data);
+    //logs->addLog(data);
 
-    ts << "Odpowiedz zwrotna \n" << "Odebrano: \n" << data;
+    //ts << "Odpowiedz zwrotna \n" << "Odebrano: \n" << data;
+
+    c_myAction * action = (dynamic_cast<c_ClinicTcpServer *>(this->parent()))->getParser()->Parse(data.toUtf8());
+    (dynamic_cast<c_ClinicTcpServer *>(this->parent()))->getExecutive()->exec(action, this);
+
 }
 
 void c_ClientConnection::disconnected()

@@ -15,6 +15,8 @@
 #include <QSystemTrayIcon>
 #include <QActionGroup>
 #include <QMenu>
+#include <QJsonDocument>
+#include <QJsonObject>
 
 class c_AppTrayIcon : public QSystemTrayIcon, public i_Watched
 {

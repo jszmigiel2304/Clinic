@@ -9,6 +9,9 @@
 #include <QAbstractSocket>
 #include <QDataStream>
 #include <QTextStream>
+#include <QJsonDocument>
+#include <QJsonObject>
+#include <QCryptographicHash>
 
 class c_connectionToServerController : public QObject
 {

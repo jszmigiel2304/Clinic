@@ -2,6 +2,8 @@
 #define C_CLIENTCONNECTION_H
 
 #include "w_logswindow.h"
+#include "c_myaction.h"
+#include "c_myparser.h"
 
 #include <QObject>
 #include <QThread>
@@ -9,6 +11,8 @@
 #include <QTextStream>
 #include <QDataStream>
 #include <QMessageBox>
+#include <QJsonDocument>
+#include <QByteArray>
 
 
 class c_ClientConnection : public QThread
@@ -22,6 +26,8 @@ public:
     void run();
     void myClose();
     void myClose2();
+
+    void reply(QByteArray answer);
 
     QSslSocket *getSocket() const;
     void setSocket(QSslSocket *value);

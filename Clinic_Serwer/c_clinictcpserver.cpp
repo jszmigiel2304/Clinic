@@ -31,6 +31,8 @@ c_ClinicTcpServer::c_ClinicTcpServer(QMap<QString, QVariant> settings, QObject *
 
 c_ClinicTcpServer::~c_ClinicTcpServer()
 {
+    parser->deleteLater();
+    executive->deleteLater();
 }
 
 QMap<QString, QVariant> c_ClinicTcpServer::ShareProperties(QString sharedData)
@@ -152,6 +154,11 @@ void c_ClinicTcpServer::runServer()
     }
      else
     {
+        this->parser = new c_myParser(this);
+        this->parser->setLogs(logs);
+        this->executive = new c_actionExecutive(this);
+        this->executive->setLogs(logs);
+
         this->status = "[ Server TCP ] Uruchomiony";
         emit this->MessageChanged(this->status, 2000);
 
@@ -214,6 +221,31 @@ void c_ClinicTcpServer::UpdateProperties(QMap<QString, QVariant> map)
     }
 
     emit this->PropertiesChanged();
+}
+
+c_MySqlDatabaseController *c_ClinicTcpServer::getDbContr() const
+{
+    return dbContr;
+}
+
+c_actionExecutive *c_ClinicTcpServer::getExecutive() const
+{
+    return executive;
+}
+
+void c_ClinicTcpServer::setExecutive(c_actionExecutive *value)
+{
+    executive = value;
+}
+
+c_myParser *c_ClinicTcpServer::getParser() const
+{
+    return parser;
+}
+
+void c_ClinicTcpServer::setParser(c_myParser *value)
+{
+    parser = value;
 }
 
 QList<c_ClientConnection *> c_ClinicTcpServer::getHostsList() const

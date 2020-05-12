@@ -142,6 +142,14 @@ void c_MySqlDatabaseController::SetUpDatabase(QString name, QMap<QString, QVaria
     QSqlDatabase::database(name).setPassword(settings["password"].toString());
 }
 
+QSqlQuery c_MySqlDatabaseController::exe(QSqlQuery query, QString destDatabase)
+{
+    QSqlQuery q;
+
+
+    return q;
+}
+
 void c_MySqlDatabaseController::setAuthDbName(const QString &value)
 {
     authDbName = value;
@@ -260,5 +268,15 @@ QString c_MySqlDatabaseController::getClinicPassword() const
 void c_MySqlDatabaseController::setClinicPassword(const QString &value)
 {
     clinicPassword = value;
+}
+
+QMap<QString, QSqlDatabase> c_MySqlDatabaseController::getDatabases() const
+{
+    return databases;
+}
+
+void c_MySqlDatabaseController::setDatabases(const QMap<QString, QSqlDatabase> &value)
+{
+    databases = value;
 }
 
